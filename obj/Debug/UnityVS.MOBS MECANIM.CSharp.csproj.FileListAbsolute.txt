@@ -1,0 +1,11 @@
+C:\Users\funda\RESEARCH\BEHAVIORAL ANIMATION\MY_CODE\MOBS MECANIM\Temp\UnityVS_bin\Debug\Assembly-CSharp.dll
+C:\Users\funda\RESEARCH\BEHAVIORAL ANIMATION\MY_CODE\MOBS MECANIM\Temp\UnityVS_bin\Debug\Assembly-CSharp.pdb
+C:\Users\funda\RESEARCH\BEHAVIORAL ANIMATION\MY_CODE\MOBS MECANIM\Temp\UnityVS_bin\Debug\Assembly-UnityScript-firstpass.dll
+C:\Users\funda\RESEARCH\BEHAVIORAL ANIMATION\MY_CODE\MOBS MECANIM\Temp\UnityVS_bin\Debug\UnityEditor.dll
+C:\Users\funda\RESEARCH\BEHAVIORAL ANIMATION\MY_CODE\MOBS MECANIM\Temp\UnityVS_bin\Debug\UnityEngine.dll
+C:\Users\funda\RESEARCH\BEHAVIORAL ANIMATION\MY_CODE\MOBS MECANIM\Temp\UnityVS_bin\Debug\Assembly-CSharp-firstpass.pdb
+C:\Users\funda\RESEARCH\BEHAVIORAL ANIMATION\MY_CODE\MOBS MECANIM\Temp\UnityVS_bin\Debug\UnityEngine.xml
+C:\Users\funda\RESEARCH\BEHAVIORAL ANIMATION\MY_CODE\MOBS MECANIM\Temp\UnityVS_bin\Debug\UnityEditor.xml
+C:\Users\funda\RESEARCH\BEHAVIORAL ANIMATION\MY_CODE\MOBS MECANIM\obj\Debug\UnityVS.MOBS MECANIM.CSharp.csprojResolveAssemblyReference.cache
+C:\Users\funda\RESEARCH\BEHAVIORAL ANIMATION\MY_CODE\MOBS MECANIM\obj\Debug\Assembly-CSharp.dll
+C:\Users\funda\RESEARCH\BEHAVIORAL ANIMATION\MY_CODE\MOBS MECANIM\obj\Debug\Assembly-CSharp.pdb
