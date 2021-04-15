@@ -61,6 +61,7 @@
     <Compile Include="Assets/SampleScenes/Scripts/ParticleSceneControls.cs" />
     <Compile Include="Assets/Scripts/PlayGame/Collection.cs" />
     <Compile Include="Assets/Scripts/LineHandler.cs" />
+    <Compile Include="Assets/Scripts/PlayGame/Inventory.cs" />
     <Compile Include="Assets/Scripts/Camera/MoveTarget.cs" />
     <Compile Include="Assets/Scripts/Screenshot.cs" />
     <Compile Include="Assets/SampleScenes/Scripts/CameraSwitch.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Assets/Scripts/PostureAnimator.cs" />
     <Compile Include="Assets/Scripts/ObjComponent.cs" />
     <Compile Include="Assets/Scripts/AnimGUI.cs" />
+    <Compile Include="Assets/Scripts/PlayGame/CameraControl.cs" />
     <Compile Include="Assets/Scripts/UpdateProtestCenter.cs" />
     <Compile Include="Assets/Scripts/AnimationSelector.cs" />
     <Compile Include="Assets/Scripts/Behavior/PoliceBehavior.cs" />
@@ -103,7 +105,9 @@
     <Compile Include="Assets/Scripts/TriggerExplosionBehavior.cs" />
     <Compile Include="Assets/Scripts/GUIHandler.cs" />
     <Compile Include="Assets/Scripts/ObjectLabel.cs" />
+    <Compile Include="Assets/Scripts/PlayGame/Pickup.cs" />
     <Compile Include="Assets/Scripts/Camera/CameraControl3dsMaxStyle.cs" />
+    <Compile Include="Assets/Scripts/PlayGame/HPManager.cs" />
     <Compile Include="Assets/Scripts/ShelfComponent.cs" />
     <Compile Include="Assets/SampleScenes/Menu/Scripts/PauseMenu.cs" />
     <Compile Include="Assets/Scripts/ArrowBehavior.cs" />
