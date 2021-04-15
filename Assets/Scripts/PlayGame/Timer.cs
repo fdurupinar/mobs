@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
-    public float MaxTime = 60f;
+    public float MaxTime = 180f;
 
     [SerializeField]
     private float CountDown = 0;

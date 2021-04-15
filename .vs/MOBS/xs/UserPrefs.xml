@@ -1,24 +1,13 @@
-﻿<Properties StartupConfiguration="{523D2221-0438-5B5E-F6F8-C971DC440D5B}|Unit Tests">
+﻿<Properties StartupConfiguration="{E3A2EAF7-4578-1C0E-7CC0-9EA1D3C296DF}|">
   <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="MOBS" expanded="True">
-            <Node name="Assembly-CSharp" expanded="True">
-              <Node name="Assets" expanded="True">
-                <Node name="Scripts" expanded="True" />
-              </Node>
-            </Node>
-            <Node name="Assembly-CSharp-firstpass" expanded="True">
-              <Node name="Assets" expanded="True">
-                <Node name="Standard Assets" expanded="True">
-                  <Node name="Characters" expanded="True">
-                    <Node name="FirstPersonCharacter" expanded="True">
-                      <Node name="Scripts" expanded="True">
-                        <Node name="FirstPersonController.cs" selected="True" />
-                      </Node>
-                    </Node>
-                  </Node>
+            <Node name="Assets" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="PlayGame" expanded="True">
+                  <Node name="Timer.cs" selected="True" />
                 </Node>
               </Node>
             </Node>
@@ -33,6 +22,7 @@
     <String>Assembly-CSharp-Editor-firstpass.csproj</String>
   </DisabledProjects>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="78cc78e8-272e-4ebe-9760-40169dcdd2b4" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
