@@ -304,8 +304,11 @@
 -r:"/Applications/Unity/Hub/Editor/2021.1.1f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/4.7.1-api/System.Xml.dll"
 -r:"/Applications/Unity/Hub/Editor/2021.1.1f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/4.7.1-api/System.Xml.Linq.dll"
 -r:"/Applications/Unity/Hub/Editor/2021.1.1f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll"
--r:"/Users/baozi/Documents/research/mobs/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom/nunit.framework.dll"
+-r:"/Users/baozi/Documents/research/crowdGame/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom/nunit.framework.dll"
 -r:"Library/Bee/artifacts/200b0aE.dag/Assembly-CSharp-firstpass.ref.dll"
+-r:"Library/Bee/artifacts/200b0aE.dag/Unity.Recorder.Base.ref.dll"
+-r:"Library/Bee/artifacts/200b0aE.dag/Unity.Recorder.Editor.ref.dll"
+-r:"Library/Bee/artifacts/200b0aE.dag/Unity.Recorder.ref.dll"
 -r:"Library/Bee/artifacts/200b0aE.dag/Unity.Rider.Editor.ref.dll"
 -r:"Library/Bee/artifacts/200b0aE.dag/Unity.TextMeshPro.Editor.ref.dll"
 -r:"Library/Bee/artifacts/200b0aE.dag/Unity.TextMeshPro.ref.dll"
@@ -318,11 +321,6 @@
 -r:"Library/Bee/artifacts/200b0aE.dag/UnityEngine.TestRunner.ref.dll"
 -r:"Library/Bee/artifacts/200b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/Standard Assets/Editor/CrossPlatformInput/CrossPlatformInputInitialize.cs"
-"Assets/Standard Assets/Editor/Water/Water4/GerstnerDisplaceEditor.cs"
-"Assets/Standard Assets/Editor/Water/Water4/PlanarReflectionEditor.cs"
-"Assets/Standard Assets/Editor/Water/Water4/SpecularLightingEditor.cs"
-"Assets/Standard Assets/Editor/Water/Water4/WaterBaseEditor.cs"
-"Assets/Standard Assets/Editor/Water/Water4/WaterEditorUtility.cs"
 -langversion:8.0
 
 /deterministic

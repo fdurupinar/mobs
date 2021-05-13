@@ -1,17 +1,18 @@
 ﻿<Properties StartupConfiguration="{E3A2EAF7-4578-1C0E-7CC0-9EA1D3C296DF}|">
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Behavior/ShopperBehavior.cs">
+    <Files>
+      <File FileName="Assets/Scripts/PlayGame/HPManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/PlayGame/Inventory.cs" />
+      <File FileName="Assets/Scripts/PlayGame/Pickup.cs" />
+      <File FileName="Assets/Scripts/Analysis/DataCollector.cs" />
+      <File FileName="Assets/Scripts/Behavior/FightBehavior.cs" />
+      <File FileName="Assets/Scripts/PlayGame/FirstPersonController.cs" Line="26" Column="9" />
+      <File FileName="Assets/Scripts/Behavior/ShopperBehavior.cs" Line="154" Column="54" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="MOBS" expanded="True">
-            <Node name="Assets" expanded="True">
-              <Node name="Scripts" expanded="True">
-                <Node name="PlayGame" expanded="True">
-                  <Node name="Timer.cs" selected="True" />
-                </Node>
-              </Node>
-            </Node>
-          </Node>
+          <Node name="MOBS" expanded="True" selected="True" />
         </State>
       </Pad>
     </Pads>
@@ -22,7 +23,7 @@
     <String>Assembly-CSharp-Editor-firstpass.csproj</String>
   </DisabledProjects>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="78cc78e8-272e-4ebe-9760-40169dcdd2b4" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="2486c39b-8c96-417c-b8d4-ecd5a7704520" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

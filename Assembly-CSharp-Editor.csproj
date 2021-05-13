@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{523D2221-0438-5B5E-F6F8-C971DC440D5B}</ProjectGuid>
+    <ProjectGuid>{4B01E49E-CA38-6F75-4C96-3BB93CA12FDD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
@@ -57,10 +57,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets/Scripts/Editor/AffectEditor.cs" />
-    <Compile Include="Assets/Scripts/Editor/PostureEditor.cs" />
     <Compile Include="Assets/Scripts/Editor/AppraisalEditor.cs" />
-    <Compile Include="Assets/Scripts/Editor/CrowdEditor.cs" />
     <Compile Include="Assets/Scripts/Editor/GroupBuilderEditor.cs" />
+    <Compile Include="Assets/Scripts/Editor/PostureEditor.cs" />
+    <Compile Include="Assets/Scripts/Editor/CrowdEditor.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -654,8 +654,14 @@
     <Reference Include="UnityEditor.TestRunner">
       <HintPath>Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Recorder.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.Recorder.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Recorder.Base">
+      <HintPath>Library/ScriptAssemblies/Unity.Recorder.Base.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
@@ -681,18 +687,21 @@
     <Reference Include="UnityEngine.UI">
       <HintPath>Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Recorder">
+      <HintPath>Library/ScriptAssemblies/Unity.Recorder.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{5F19CE11-3787-D6C4-63C6-A994C96A05E1}</Project>
+      <Project>{6F0BAE3D-6843-3986-2C25-FE10B59075C6}</Project>
       <Name>Assembly-CSharp-firstpass</Name>
     </ProjectReference>
     <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{E3A2EAF7-4578-1C0E-7CC0-9EA1D3C296DF}</Project>
+      <Project>{9CA0ECD2-4579-4554-DE12-422B3AE3C3B7}</Project>
       <Name>Assembly-CSharp</Name>
     </ProjectReference>
     <ProjectReference Include="Assembly-CSharp-Editor-firstpass.csproj">
-      <Project>{F25C0C9D-2156-0024-C941-4BF77D906DA8}</Project>
+      <Project>{F9405B7E-9BD7-7183-E079-C58C93FD8A03}</Project>
       <Name>Assembly-CSharp-Editor-firstpass</Name>
     </ProjectReference>
   </ItemGroup>

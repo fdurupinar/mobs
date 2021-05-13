@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{F25C0C9D-2156-0024-C941-4BF77D906DA8}</ProjectGuid>
+    <ProjectGuid>{F9405B7E-9BD7-7183-E079-C58C93FD8A03}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp-Editor-firstpass</AssemblyName>
@@ -56,12 +56,7 @@
     <Analyzer Include="/Applications/Visual Studio.app/Contents/Resources/lib/monodevelop/AddIns/MonoDevelop.Unity/Analyzers/Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets/Standard Assets/Editor/Water/Water4/SpecularLightingEditor.cs" />
     <Compile Include="Assets/Standard Assets/Editor/CrossPlatformInput/CrossPlatformInputInitialize.cs" />
-    <Compile Include="Assets/Standard Assets/Editor/Water/Water4/PlanarReflectionEditor.cs" />
-    <Compile Include="Assets/Standard Assets/Editor/Water/Water4/GerstnerDisplaceEditor.cs" />
-    <Compile Include="Assets/Standard Assets/Editor/Water/Water4/WaterBaseEditor.cs" />
-    <Compile Include="Assets/Standard Assets/Editor/Water/Water4/WaterEditorUtility.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -655,8 +650,14 @@
     <Reference Include="UnityEditor.TestRunner">
       <HintPath>Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Recorder.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.Recorder.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Recorder.Base">
+      <HintPath>Library/ScriptAssemblies/Unity.Recorder.Base.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
@@ -682,10 +683,13 @@
     <Reference Include="UnityEngine.UI">
       <HintPath>Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Recorder">
+      <HintPath>Library/ScriptAssemblies/Unity.Recorder.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{5F19CE11-3787-D6C4-63C6-A994C96A05E1}</Project>
+      <Project>{6F0BAE3D-6843-3986-2C25-FE10B59075C6}</Project>
       <Name>Assembly-CSharp-firstpass</Name>
     </ProjectReference>
   </ItemGroup>
