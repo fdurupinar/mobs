@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 1035
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Console
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 542}
   m_MaxSize: {x: 10000, y: 10000}
@@ -116,10 +116,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 985
-  m_MinSize: {x: 677, y: 492}
-  m_MaxSize: {x: 18003, y: 14042}
+  m_MinSize: {x: 678, y: 492}
+  m_MaxSize: {x: 18001, y: 14042}
   vertical: 0
-  controlID: 1661
+  controlID: 132
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -141,10 +141,10 @@ MonoBehaviour:
     y: 0
     width: 1489
     height: 985
-  m_MinSize: {x: 402, y: 492}
-  m_MaxSize: {x: 14003, y: 14042}
+  m_MinSize: {x: 403, y: 492}
+  m_MaxSize: {x: 14001, y: 14042}
   vertical: 1
-  controlID: 1662
+  controlID: 133
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -166,10 +166,10 @@ MonoBehaviour:
     y: 0
     width: 1489
     height: 642
-  m_MinSize: {x: 402, y: 221}
-  m_MaxSize: {x: 8002, y: 4021}
+  m_MinSize: {x: 403, y: 221}
+  m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
-  controlID: 1663
+  controlID: 134
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: GameView
+  m_Name: SceneView
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -217,13 +217,13 @@ MonoBehaviour:
     height: 642
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
-  m_ActualView: {fileID: 14}
+  m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
   - {fileID: 17}
   - {fileID: 14}
-  m_Selected: 2
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 2
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -245,10 +245,10 @@ MonoBehaviour:
     y: 642
     width: 1489
     height: 343
-  m_MinSize: {x: 333, y: 271}
-  m_MaxSize: {x: 14003, y: 10021}
+  m_MinSize: {x: 331, y: 271}
+  m_MaxSize: {x: 14001, y: 10021}
   vertical: 0
-  controlID: 1580
+  controlID: 18
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -294,8 +294,8 @@ MonoBehaviour:
     y: 0
     width: 917
     height: 343
-  m_MinSize: {x: 102, y: 121}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
@@ -322,8 +322,8 @@ MonoBehaviour:
     y: 0
     width: 431
     height: 985
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 22}
   m_Panes:
   - {fileID: 22}
@@ -387,7 +387,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 1
+    m_EnableMouseInput: 0
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -446,9 +446,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: da480000
-      m_LastClickedID: 0
-      m_ExpandedIDs: 605cffff40ecffffd8f7ffff8af9ffff2afbffff54fbffff12490000bc6a0000846f0000cc700000f6710000649a000000c7000004d5000048df000066e00000826101000475010096760100e68d0100b6990100c6130200b41d0200
+      m_SelectedIDs: 9e330400
+      m_LastClickedID: 275358
+      m_ExpandedIDs: 4ae6ffff54fbffff98310400c8df0500
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -559,11 +559,11 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: 0.011998576, y: -0.013498604, z: 0.00016196164, w: 0.9998392}
     speed: 2
-    m_Value: {x: -0.011998576, y: 0.013498603, z: -0.00016196164, w: -0.9998392}
+    m_Value: {x: 0.011998549, y: -0.013498574, z: 0.00016196127, w: 0.9998369}
   m_Size:
-    m_Target: 440.761
+    m_Target: 440.09882
     speed: 2
-    m_Value: 440.761
+    m_Value: 440.09882
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -695,14 +695,14 @@ MonoBehaviour:
   m_LastFolders:
   - Assets/Scenes
   m_LastFoldersGridSize: 16
-  m_LastProjectPath: /Users/baozi/Documents/research/crowdGame
+  m_LastProjectPath: /Users/baozi/Documents/research/mobs
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 183.91858}
-    m_SelectedIDs: c8480000
-    m_LastClickedID: 18632
-    m_ExpandedIDs: 000000007e48000080480000824800008448000086480000884800008a4800008c4800008e48000090480000924800009448000000ca9a3b
+    scrollPos: {x: 0, y: 2.000122}
+    m_SelectedIDs: 5c480000
+    m_LastClickedID: 18524
+    m_ExpandedIDs: 0000000004480000084800000a4800000c4800000e48000010480000124800001448000018480000444800005c4800008c29020000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -730,7 +730,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 569}
     m_SelectedIDs: 626e0000
     m_LastClickedID: 28258
-    m_ExpandedIDs: 000000007e48000080480000824800008448000086480000884800008a4800008c4800008e48000090480000924800009448000000ca9a3b
+    m_ExpandedIDs: 000000000448000006480000084800000a4800000c4800000e48000010480000124800001448000016480000184800001a480000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -757,22 +757,22 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000724600005c2f0000b62f0000ce320000b2340000d8320000c02f0000c82d00007cc10000209100008c520000164c0000444c00001ec4fcffe2550000a25000009c460000dc440000644b000008ae0000c84d0000f03a0000d03a0000806e0000d43a0000d6450000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: Login
+      m_OriginalName: Login
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 2452
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 11}
     m_CreateAssetUtility:
