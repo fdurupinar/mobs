@@ -57,7 +57,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets/Scripts/Affect/Appraisal.cs" />
-    <Compile Include="Assets/GameScript/LineSight.cs" />
     <Compile Include="Assets/Scripts/Camera/MoveTarget.cs" />
     <Compile Include="Assets/Scripts/Behavior/ZoneComponent.cs" />
     <Compile Include="Assets/GameScript/Pickup.cs" />
@@ -77,7 +76,6 @@
     <Compile Include="Assets/Scripts/MathDefs.cs" />
     <Compile Include="Assets/Scripts/Affect/Contagion.cs" />
     <Compile Include="Assets/Scripts/Affect/AffectComponent.cs" />
-    <Compile Include="Assets/GameScript/Health.cs" />
     <Compile Include="Assets/GameScript/CameraControl.cs" />
     <Compile Include="Assets/SampleScenes/Menu/Scripts/PauseMenu.cs" />
     <Compile Include="Assets/Scripts/ArrowBehavior.cs" />
@@ -103,6 +101,7 @@
     <Compile Include="Assets/Scripts/AnimGUI.cs" />
     <Compile Include="Assets/GameScript/Fight.cs" />
     <Compile Include="Assets/GameScript/Collection.cs" />
+    <Compile Include="Assets/GameScript/NewClass.cs" />
     <Compile Include="Assets/Scripts/CrowdManager.cs" />
     <Compile Include="Assets/GameScript/Register.cs" />
     <Compile Include="Assets/Scripts/Behavior/AudienceBehavior.cs" />

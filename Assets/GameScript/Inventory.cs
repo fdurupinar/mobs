@@ -8,4 +8,12 @@ public class Inventory : MonoBehaviour {
     public int[] items;
     public bool[] isFull;
     public GameObject[] slots;
+    public Sprite[] sprites;
+
+    private void Start()
+    {
+        sprites[0] = Resources.Load<Sprite>("Ipad_Sprite");
+        sprites[1] = Resources.Load<Sprite>("Laptop_Sprite");
+        sprites[2] = Resources.Load<Sprite>("TV_Sprite");
+    }
 }

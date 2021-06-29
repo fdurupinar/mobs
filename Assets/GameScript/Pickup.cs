@@ -7,16 +7,16 @@ public class Pickup : MonoBehaviour {
 
     private Inventory inventory;
     public GameObject itemButton;
-    public Sprite m_Sprite_1;
-    public Sprite m_Sprite_2;
-    public Sprite m_Sprite_3;
+    //public Sprite m_Sprite_1;
+    //public Sprite m_Sprite_2;
+    //public Sprite m_Sprite_3;
 
     private void Start()
     {
         inventory = GameObject.FindGameObjectWithTag("RealPlayer").GetComponent<Inventory>();
-        m_Sprite_1 = Resources.Load<Sprite>("Ipad_Sprite");
-        m_Sprite_2 = Resources.Load<Sprite>("Laptop_Sprite");
-        m_Sprite_3 = Resources.Load<Sprite>("TV_Sprite");
+        //m_Sprite_1 = Resources.Load<Sprite>("Ipad_Sprite");
+        //m_Sprite_2 = Resources.Load<Sprite>("Laptop_Sprite");
+        //m_Sprite_3 = Resources.Load<Sprite>("TV_Sprite");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -30,15 +30,15 @@ public class Pickup : MonoBehaviour {
 
                     if (this.gameObject.CompareTag("Ipad"))
                     {
-                        inventory.slots[i].GetComponent<Image>().sprite = m_Sprite_1;
+                        inventory.slots[i].GetComponent<Image>().sprite = inventory.sprites[0];
                     }
                     else if (this.gameObject.CompareTag("Laptop"))
                     {
-                        inventory.slots[i].GetComponent<Image>().sprite = m_Sprite_2;
+                        inventory.slots[i].GetComponent<Image>().sprite = inventory.sprites[1];
                     }
                     else if (this.gameObject.CompareTag("TV"))
                     {
-                        inventory.slots[i].GetComponent<Image>().sprite = m_Sprite_3;
+                        inventory.slots[i].GetComponent<Image>().sprite = inventory.sprites[2];
 
                     }
                     //Debug.Log("Collide 2");
@@ -56,7 +56,7 @@ public class Pickup : MonoBehaviour {
     {
         if (inventory.isFull[4])
         {
-            Debug.Log("Win!");
+            Debug.Log("You are win!");
             GameObject timer = GameObject.Find("LevelTimer");
             Destroy(timer);
             GameObject[] Fireworksystem = GameObject.FindGameObjectsWithTag("Fireworks");
@@ -64,6 +64,9 @@ public class Pickup : MonoBehaviour {
             {
                 go.GetComponent<ParticleSystem>().Play();
             }
+        }
+        else if (Time.timeSinceLevelLoad > 300) {
+            Debug.Log("You are lost!");
         }
     }
 }
