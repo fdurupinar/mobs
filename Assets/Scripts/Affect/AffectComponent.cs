@@ -205,9 +205,10 @@ public class AffectComponent : MonoBehaviour {
 
         int i;
         
-        const float pullPushSpeed = 1f;
-        const float decaySpeed = 0.001f;
-        Vector3 m2ec, ec2m, m2dm, ec2dm;
+        //const float pullPushSpeed = 1f;
+        //const float decaySpeed = 0.001f;
+        //Vector3 m2ec, ec2m, m2dm, ec2dm;
+        Vector3  m2dm;
 
         int activeEmotionCnt = 0;
         EmotionCenter = DefaultMood;

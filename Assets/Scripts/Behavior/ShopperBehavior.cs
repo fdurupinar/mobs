@@ -212,7 +212,7 @@ public class ShopperBehavior : MonoBehaviour {
             }
             */
         }
-        else { //Fighting
+        else if (GetComponent<FightBehavior>().Opponent.CompareTag("Player")) { //Fighting
             CurrentObjs.SetActive(false);
             //foreach (Transform co in CurrentObjs)
               //  co.gameObject.SetActive(false);
@@ -224,10 +224,7 @@ public class ShopperBehavior : MonoBehaviour {
             else
                 GetComponent<FightBehavior>().Opponent.GetComponent<ShopperBehavior>().YieldObjects(this.gameObject);
 
-            
         }
-        
-        
 	}
 
     //Arrange positions of object

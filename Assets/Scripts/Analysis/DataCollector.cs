@@ -415,7 +415,7 @@ public class DataCollector : MonoBehaviour {
 
     void RecordPersonalities(string fileName, int pType) {
         StreamWriter sw = new StreamWriter(fileName);
-        float dt = 0, et = 0;
+        //float dt = 0, et = 0;
         foreach (Transform group in transform) {
             foreach (Transform agent in group) {
                 if (!agent.gameObject.activeInHierarchy) continue;

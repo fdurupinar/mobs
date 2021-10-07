@@ -1,21 +1,26 @@
 //#define ESCAPES
-
 #define ASCRIBE
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-
-
-
 //[RequireComponent (typeof (AffectComponent))]
-public class AgentComponent: MonoBehaviour {
-   
-	public int Id;
+public class AgentComponent: MonoBehaviour, GeneralStateComponent {
+    public MeshCreator VisibilityMesh;
+    ParticleSystem _particleSystem;
+    UnityEngine.AI.NavMeshAgent _navMeshAgent;
+    Appraisal _appraisal;
+    AffectComponent _affectComponent;
+    private AnimationSelector _animationSelector;
+
+    public GameObject IndicatorAgent;
+    public GameObject IndicatorParticle;
+    public GameObject IndicatorCircle;
+    
+    public int Id;
 	public float WalkingSpeed = 1f; //Computed according to Personality
     private Vector3 _initialPos;
     public float Damage;
-    
     public int GroupId;
 	public float PanicThreshold = 0.5f; //between 0 and 1 computed according to Personality ( Initial Personality 0)
     public float WaitingThreshold = 3f;
@@ -23,66 +28,38 @@ public class AgentComponent: MonoBehaviour {
 	public ArrayList CollidingAgents;
     public float TimeLastFight = 0f; //end time of the last fight
     public float TimeLastFall = 0f; //end time of the last fight
-    
-    
     public float WaitDuration; //Duration to wait until a new path is set. Proportional to patience
-    
-    UnityEngine.AI.NavMeshAgent _navMeshAgent;
-    Appraisal _appraisal;
-    AffectComponent _affectComponent;
-
-    public GameObject IndicatorAgent;
-    public GameObject IndicatorParticle;
-    public GameObject IndicatorCircle;
-
     private  float VisibilityAngle = 60;//Mathf.PI/ 3f; //Mathf.PI * 2f; //Mathf.PI / 3f;
     float _visibilityDist;
-    public MeshCreator VisibilityMesh;
-    ParticleSystem _particleSystem;
+    
     Color _expressionColor;
     private float _colorTime;
 
-   Vector3 _prevPos; //position in a previous frame
-   private float _posChange;
-   private float _timeLastPosChange;
-   public bool WaitedTooLong = false;
-   public bool WaitingOnPurpose = false;
-   public bool IsFightStarter = false;
-   public bool IsWatchingFight = false; //is the agent watching a fight. updated in fightbehavior
-
-    
+    Vector3 _prevPos; //position in a previous frame
+    private float _posChange;
+    private float _timeLastPosChange;
+    public bool WaitedTooLong = false;
+    public bool WaitingOnPurpose = false;
+    public bool IsFightStarter = false;
+    public bool IsWatchingFight = false; //is the agent watching a fight. updated in fightbehavior
     public Vector3 Impact; //character momentum
-
-   //public GUIText AgentText;
-
-    private AnimationSelector _animationSelector;
     //DEBUG
-   public bool IsPushed = false;
-   public bool IsFallen = false;
-
-
-   public bool StartedWaiting = false;
-   public bool FinishedWaiting = false;
-
+    public bool IsPushed = false;
+    public bool IsFallen = false;
+    public bool StartedWaiting = false;
+    public bool FinishedWaiting = false;
     public Vector3 HandPos; //for picking up objects
-
     public bool NavMeshAgentWorking;
 
-    
 	// Use this for initialization
 	void Awake () {
-
-	    
-
         VisibilityMesh = null;
-     
-
         CollidingAgents = new ArrayList(); //agents that are colliding with me
 
         if(!GetComponent<UnityEngine.AI.NavMeshAgent>())
             gameObject.AddComponent<UnityEngine.AI.NavMeshAgent>();
 
-	    _animationSelector = GetComponent<AnimationSelector>();
+        _animationSelector = GetComponent<AnimationSelector>();
         _navMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         _appraisal = GetComponent<Appraisal>();
         _affectComponent = GetComponent<AffectComponent>();
@@ -91,8 +68,7 @@ public class AgentComponent: MonoBehaviour {
         _navMeshAgent.updatePosition = true; //false ? for resetting the position
         GetComponent<PersonalityMapper>().PersonalityToSteering(); //initialize steering parameters according to Personality
         _initialPos = transform.position;
-       
-
+        
         //Set collider size :WARNING: Temporary
         SphereCollider col = (SphereCollider)this.GetComponent<Collider>();
         col.radius = 2f; //to test escapes and ascribe --normally 4f
@@ -100,133 +76,78 @@ public class AgentComponent: MonoBehaviour {
 	    col.radius = 10f;
 	    VisibilityAngle = 360;
 #endif
-
         _visibilityDist = col.radius; //* 2f;
-
-	
         _prevPos = transform.position;
-
-
         _navMeshAgent.obstacleAvoidanceType = UnityEngine.AI.ObstacleAvoidanceType.HighQualityObstacleAvoidance;//ObstacleAvoidanceType.NoObstacleAvoidance; 
         _timeLastPosChange = Time.time;
 
-	    
-
-	        //AgentText = new GUIText();
-
-        //foreach(Transform child in transform) {
-        //    if(child.name.Equals("GUI Text"))
-        //        AgentText = child.guiText;
-        //}
-        //AgentText.gameObject.AddComponent("ObjectLabel");
-        //AgentText.gameObject.GetComponent<ObjectLabel>().Target = this.transform ;
-        //AgentText.fontSize = 10;
-        //AgentText.anchor = TextAnchor.UpperCenter;
-        //AgentText.text = "";
-
-
 	    Impact = Vector3.zero;
-
-        //if(GameObject.Find("EZReplayManager"))
-	       // this.gameObject.AddComponent<Object2Record>();
-
-
 	}
        
     void Start() {
         IndicatorAgent = (GameObject)Instantiate(Resources.Load("Indicator"), transform.position + Vector3.up, transform.rotation);
         IndicatorParticle = (GameObject)Instantiate(Resources.Load("IndicatorParticle"), transform.position + Vector3.up *2.2f, transform.rotation);
-            IndicatorCircle = (GameObject)Instantiate(Resources.Load("IndicatorCircle"), transform.position + Vector3.up * 2.3f , transform.rotation);
-            IndicatorCircle.transform.parent = transform;
-            IndicatorCircle.transform.localScale = new Vector3(_navMeshAgent.radius * 2, 0, _navMeshAgent.radius * 2);
-            //SphereCollider col = (SphereCollider)this.collider;
-            //IndicatorCircle[i].transform.localScale = new Vector3(col.radius, 0, col.radius);
-        
+        IndicatorCircle = (GameObject)Instantiate(Resources.Load("IndicatorCircle"), transform.position + Vector3.up * 2.3f , transform.rotation);
+        IndicatorCircle.transform.parent = transform;
+        IndicatorCircle.transform.localScale = new Vector3(_navMeshAgent.radius * 2, 0, _navMeshAgent.radius * 2);
         
         IndicatorParticle.transform.Rotate(-90, 0, 0); //for the particle system to be parallel to the table plane
         IndicatorAgent.transform.parent = transform;        
         IndicatorParticle.transform.parent = transform;
-
-
         IndicatorAgent.transform.localScale = new Vector3(_navMeshAgent.radius, 1f, _navMeshAgent.radius); //height for seeing indicator
-        
-       
         _particleSystem = new ParticleSystem();
-
-        //IndicatorParticle.AddComponent<ParticleSystem>();
-        _particleSystem = IndicatorParticle.GetComponent<ParticleSystem>();
-
         
+        _particleSystem = IndicatorParticle.GetComponent<ParticleSystem>();
         IndicatorParticle.GetComponent<Renderer>().material.color = new Color(0f, 0f, 0f, 0f); //always invisible 
-
         IndicatorParticle.SetActive(false);
         _particleSystem.enableEmission = false;
-        
         _expressionColor = new Color(1,1,1);
         _timeLastPosChange = Time.time;
 
         if(GetComponentInChildren<AnimationSelector>() &&  GetComponent<AnimationSelector>().enabled) {
             IndicatorAgent.SetActive(false);
             IndicatorCircle.SetActive(false);
-      
         }
         else {
             IndicatorAgent.SetActive(true);
             IndicatorCircle.SetActive(false);
         }
-
         Random.seed = Id;
-       
     }
 
-	public void Restart() 
-    {
-        //DestroyImmediate(GetComponent<NavMeshAgent>());
-        //gameObject.AddComponent("NavMeshAgent");        
+	public void Restart() {      
         GetComponent<UnityEngine.AI.NavMeshAgent>().speed = WalkingSpeed; //maximum speed
         GetComponent<UnityEngine.AI.NavMeshAgent>().angularSpeed = 360;
         GetComponent<UnityEngine.AI.NavMeshAgent>().updatePosition = false; //for resetting the position
         GetComponent<PersonalityMapper>().PersonalityToSteering(); //update steering parameters in navmesh according to Personality
         transform.position = _initialPos;
         Damage = 0f;
-        
         _navMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-
+        
         if(IsFighting()) 
         {
             DestroyImmediate(GetComponent<FightBehavior>());
         }
 
         _timeLastPosChange = Time.time;
-
         IsWatchingFight = false;
         Impact = Vector3.zero;
-
         GetComponent<UnityEngine.AI.NavMeshAgent>().updatePosition = true;
     }
 
-    
-  
     void RenderViewingZone() {
-
         int quality = 20;
-
         float distMin = 0.0f;
         float distMax = _visibilityDist;
-
         Vector3 pos = IndicatorAgent.transform.position;
        // float angle_lookat = (float)Math.Acos(Vector3.Dot(new Vector3(1, 0, 0), GetComponent<NavMeshAgent>().velocity)) * Mathf.Deg2Rad;
         float angleLookat = MathDefs.VectorAngle(new Vector3(1,0,0),_navMeshAgent.velocity)* Mathf.Deg2Rad; //initial looking angle is in the x direction
-
         float angleFov = VisibilityAngle; 
-
         float angleStart = angleLookat - angleFov;
         float angleEnd = angleLookat + angleFov;
         float angleDelta = (angleEnd - angleStart) / (float)quality;
-
         float angleCurr = angleStart;
         float angleNext = angleStart + angleDelta;
-        
         List <Vector3> nodePositions = new List<Vector3>();
 
         for (int i = 0; i < quality - 1; i++) {
@@ -234,90 +155,67 @@ public class AgentComponent: MonoBehaviour {
             sphereCurr.x = Mathf.Cos(angleCurr);
             sphereCurr.z = Mathf.Sin(angleCurr);
             sphereCurr.y = pos.y;
-            
-
             Vector3 sphereNext;
             sphereNext.x = Mathf.Cos(angleNext);
             sphereNext.z = Mathf.Sin(angleNext);
             sphereNext.y = pos.y;
-
             Vector3 posCurrMin = pos + sphereCurr * distMin;
             Vector3 posCurrMax = pos + sphereCurr * distMax;
-
             Vector3 posNextMin = pos + sphereNext * distMin;
             Vector3 posNextMax = pos + sphereNext * distMax;
-
             posCurrMin.y = posCurrMax.y = posNextMin.y = posNextMax.y = pos.y;
-
             nodePositions.Add(posCurrMin);
             nodePositions.Add(posCurrMax);
             nodePositions.Add(posNextMax);
-           
             angleCurr += angleDelta;
             angleNext += angleDelta;
         }
-        
         VisibilityMesh.UpdatePolygon(nodePositions);
         VisibilityMesh.Mat.color = new Color(_expressionColor.r, _expressionColor.g, _expressionColor.b, 0.2f);
 
     }
 
     void UpdateWaitingTime(){
-        
         if ((Time.time - _timeLastPosChange) >= 5) {
             _posChange = Vector3.Distance(transform.position, _prevPos);
-           
             _timeLastPosChange = Time.time;
-
             if (WaitingOnPurpose || _posChange >= WaitingThreshold) {//(Time.deltaTime * _navMeshAgent.speed) / 1.5f) {
                 WaitedTooLong = false;
             }
             else {
-                WaitedTooLong = true;
-                          
+                WaitedTooLong = true;       
             }
-
             _prevPos = transform.position;
         }
     }
 
-   void LateUpdate() {
-       if (IsFallen) {
+    void LateUpdate() {
+        if (IsFallen) {
            IndicatorAgent.transform.Rotate(90, 0, 0);
-       }
+        }
 
-       if (Impact.magnitude > 0.2) { // if momentum > 0.2...
-           //character.Move(impact * Time.deltaTime); // move character
-        //   _navMeshAgent.Move(Impact * Time.deltaTime);
+        if (Impact.magnitude > 0.2) {
+            SteerTo(transform.position + Impact * Time.deltaTime);
+            _navMeshAgent.updateRotation = false; 
+            _navMeshAgent.updateRotation = false; 
+            _navMeshAgent.updateRotation = false; 
+        }
+        else {
+            _navMeshAgent.updateRotation = true;
+        }
 
-           SteerTo(transform.position + Impact * Time.deltaTime);
-           
-           _navMeshAgent.updateRotation = false; 
-
-       }
-       else
-           _navMeshAgent.updateRotation = true; 
-       // impact vanishes to zero over time
-       Impact = Vector3.Lerp(Impact, Vector3.zero, 2 * Time.deltaTime);
-       
-
-   }
+        // impact vanishes to zero over time
+        Impact = Vector3.Lerp(Impact, Vector3.zero, 2 * Time.deltaTime);
+    }
     void Update() {
-        
         AffectUpdate(); //our method
-
-        //_expressionColor = _affectComponent.GetExpressionColor(_affectComponent.DominantEkmanEmotion);
         _expressionColor = _affectComponent.GetExpressionColor();
-
         UpdateIndicator();
-
-        // AgentText.text = _affectComponent.EkmanStr[_affectComponent.DominantEkmanEmotion];
 
         if (IsFighting() == false) {
             if (TimeSinceLastFight() > 10) //start healing after 10 seconds
                 Heal();
         }
-
         if (IsDead()) {
            // _navMeshAgent.Stop();
             _navMeshAgent.updatePosition = false;
@@ -334,13 +232,7 @@ public class AgentComponent: MonoBehaviour {
             _navMeshAgent.updateRotation = false;
         }
             
-
         NavMeshAgentWorking = _navMeshAgent.updatePosition;
-
-    //    UpdateWaitingTime();
-
-        
-        
 
         if(VisibilityMesh != null)
             RenderViewingZone();
@@ -350,45 +242,36 @@ public class AgentComponent: MonoBehaviour {
 #else
            EmotionalBehaviorUpdate();
 #endif
-
-
     }
 
     void EmotionalBehaviorUpdateEscapes() {
-        //_navMeshAgent.speed = 3.8f * _affectComponent.Emotion[(int)EType.Fear]; //* 1f/Vector3.Distance(transform.position, Vector3.zero);
         _navMeshAgent.speed = Mathf.Lerp(_navMeshAgent.speed, 3.8f, _affectComponent.Emotion[(int)EType.Fear]);
     }
 
     void EmotionalBehaviorUpdateAscribe() {
-        //_navMeshAgent.speed = 3.8f * _affectComponent.Emotion[(int)EType.Fear]; //* 1f/Vector3.Distance(transform.position, Vector3.zero);
         _navMeshAgent.speed = Mathf.Lerp(_navMeshAgent.speed, 3.8f, _affectComponent.Emotion[(int)EType.Fear]);
     }
 
     //Select behaviors based on emotions
     //Agent component script is executed before role components, so current actions in role components overwrite the ones here
     void EmotionalBehaviorUpdate() {
-
         switch (_affectComponent.GetCurrMoodOctant()) {            
             case (int)MType.Hostile:
-                
                 if (!IsPolice()) {
                     if (_affectComponent.GetExpressionRange() == EmotionRange.High) {
                         _navMeshAgent.speed = Mathf.Lerp(_navMeshAgent.speed, 3.8f, Time.deltaTime);
                         foreach (GameObject c in CollidingAgents) {
                             if (IsGoodToFight(c)) {
                                 StartFight(c, true);
-                                c.GetComponent<AgentComponent>().StartFight(gameObject, false);                                
+                                c.GetComponent<GeneralStateComponent>().StartFight(gameObject, false);                                
                             }
-
                         }
                     }
                 }
-             
 
                 //If still not fighting
                 if (!IsFighting() && !IsPolice()) { 
                     int val = Random.Range(0, 2);
-
                     if (val == 0)
                         _animationSelector.SelectAction("YELL0");
                     //CurrAction[3] = "yelling0";
@@ -396,10 +279,7 @@ public class AgentComponent: MonoBehaviour {
                         _animationSelector.SelectAction("YELL1");
                         //CurrAction[3] = "yelling1";
                 }
-
-
                 else if (_affectComponent.GetExpressionRange() == EmotionRange.Moderate) {
-              
                     //If not found someone to fight, just yell
                     if (!IsFighting() && !IsPolice()) { 
                         int val = Random.Range(0, 2);
@@ -410,7 +290,6 @@ public class AgentComponent: MonoBehaviour {
                             _animationSelector.SelectAction("YELL1");
                             //CurrAction[3] = "yelling1";
                     }
-                    
                 }
                 else //low anger
                     _navMeshAgent.speed = Mathf.Lerp(_navMeshAgent.speed, WalkingSpeed, Time.deltaTime);
@@ -418,11 +297,9 @@ public class AgentComponent: MonoBehaviour {
             case (int)MType.Exuberant:
                 if (IsProtester())
                     _animationSelector.SelectAction("CLAPPING");
-                   // CurrAction[3] = "clapping";
                 else if(IsShopper()) {
                      _navMeshAgent.speed = Mathf.Lerp(_navMeshAgent.speed, 3f, Time.deltaTime);                  
-                }
-                                                  
+                }                              
                 break;
             case (int)MType.Docile:
                 _navMeshAgent.speed = Mathf.Lerp(_navMeshAgent.speed, WalkingSpeed, Time.deltaTime);
@@ -433,17 +310,11 @@ public class AgentComponent: MonoBehaviour {
             case (int)MType.Anxious:
                 if (_affectComponent.GetExpressionRange() == EmotionRange.High) {
                     _navMeshAgent.speed =  Mathf.Lerp(_navMeshAgent.speed, 3.8f, Time.deltaTime);
-                    //IncreaseSpeed(3);
-                    //_navMeshAgent.acceleration = 3;
                 }
-
                 else if (_affectComponent.GetExpressionRange() == EmotionRange.Moderate)
                     _navMeshAgent.speed = Mathf.Lerp(_navMeshAgent.speed, 3.8f, Time.deltaTime);
                 else
                     _navMeshAgent.speed = Mathf.Lerp(_navMeshAgent.speed, WalkingSpeed, Time.deltaTime);
-                    //IncreaseSpeed(1);
-                //else
-                  //  _navMeshAgent.acceleration = 1;
                 break;
             case (int)MType.Bored:
                 if (_affectComponent.GetExpressionRange() == EmotionRange.High) {
@@ -457,67 +328,45 @@ public class AgentComponent: MonoBehaviour {
                      if (_affectComponent.GetExpressionRange() == EmotionRange.High)
                          _animationSelector.SelectAction("DISAPPOINTED");
                      break;
-        
-       
-
         }
 
         if (!IsFighting()) {
             if (IsProtester() && GetComponent<ProtesterBehavior>().BannerCarrier &&
                 GetComponent<ProtesterBehavior>().Banner.activeInHierarchy) {
                     _animationSelector.SelectAction("HOLDBANNER");
-                //CurrAction[2] = "holdBanner";
-                //CurrAction[3] = "";
             }
-            //if (IsShopper() && StartedWaiting && GetComponent<ShopperBehavior>().State == (int) ShopperBehavior.ShoppingState.PickingUpObject)
-              //  _animationSelector.SelectAction("PICKUP");
-              //  CurrAction[3] = "pickingUp";
-            //_animator.SetTrigger("TriggerPickUp");
         }
     }
-
 
     void AffectUpdateAscribe() {
         float qR = _affectComponent.Emotion[(int) EType.Fear]; //my fear level
-        foreach (GameObject c in CollidingAgents) {
-        
-        }
-
+        foreach (GameObject c in CollidingAgents) {}
     }
+
     void AffectUpdateEscapes() {
         _navMeshAgent.updatePosition = true;
         _navMeshAgent.updateRotation = true;
-
-
-
         float maxFear = -1000;
-        
         foreach (GameObject c in CollidingAgents) {
-                //Ensures that agents within a radius are considered
+            //Ensures that agents within a radius are considered
+            if (!c.CompareTag("RealPlayer")) {
                 float fear = c.GetComponent<AffectComponent>().Emotion[(int) EType.Fear];
-                if (fear >= maxFear)
-                    maxFear = fear;        
-
+                if (fear >= maxFear) {
+                    maxFear = fear;
+                }
+            }
         }
 
         if(maxFear > -1000)
         _affectComponent.Emotion[(int)EType.Fear] = maxFear;
-        
-
-
         _affectComponent.ComputeMood();
-
-        
     }
   
 	void AffectUpdate () {
-        
-        //_navMeshAgent.rigidbody.isKinematic = true;
         if (!IsFighting()) {
             _navMeshAgent.updatePosition = true;
             _navMeshAgent.updateRotation = true;
         }
-
 	    float [] eventFactor = _appraisal.ComputeEventFactor();             
         //only if susceptible 
         
@@ -526,22 +375,11 @@ public class AgentComponent: MonoBehaviour {
         //List<IndexValuePair> lambdaList = new List<IndexValuePair>(); //indices of dominant emotions around us
         if (_affectComponent.ContagionMode) {
             foreach (GameObject c in CollidingAgents) {
-                //if(Physics.Linecast(transform.position, c.transform.position)){
-                
                     //Ensures that agents within a radius are considered
-
-                    if (IsVisible(c, VisibilityAngle)) {
-                        
+                    if (!c.CompareTag("RealPlayer") && IsVisible(c, VisibilityAngle)) {
                         //if c is in my visual cone and within a certain proximity                
                         for (int eInd = 0; eInd < c.GetComponent<AffectComponent>().Emotion.Length; eInd++) {
-                            if (c.GetComponent<AffectComponent>().CanExpress(eInd)) {
-                                
-                                //&&  GetComponent<AffectComponent>().LambdaE[eInd].IsSusceptible()) { //FUNDA!!!!
-                                //  IndexValuePair iv;
-                                //  iv.Ind = eInd;
-                                //  iv.Value = c.GetComponent<AffectComponent>().Emotion[eInd];
-
-                                //lambdaList.Add(iv); //add Emotion index                    
+                            if (c.GetComponent<AffectComponent>().CanExpress(eInd)) {                  
                                 if (lambdaList.ContainsKey(eInd)) {
                                     lambdaList[eInd] += c.GetComponent<AffectComponent>().Emotion[eInd];
                                     lambdaList[eInd] /= 2; //for normalization
@@ -549,91 +387,53 @@ public class AgentComponent: MonoBehaviour {
                                 else
                                     lambdaList.Add(eInd, c.GetComponent<AffectComponent>().Emotion[eInd]);
                             }
-                            /*    else { //add zero dose so that dose history gets cleared down
-                                    IndexValuePair iv;
-                                    iv.Ind = eInd;
-                                    iv.Value = 0;
-                                    lambdaList.Add(iv); //add Emotion index                    
-                                }*/
                         }
                     }
-                
             }
         }
-
 	    _affectComponent.ComputeEmotion(eventFactor, lambdaList);
 	    lambdaList.Clear();
-
-
 	    _affectComponent.ComputeMood();
 	}
 
     void UpdateIndicator() {
-
         if (IndicatorAgent.activeInHierarchy) {
-         //   if (IsFighting()) //if fighting, set it black
-           //     IndicatorAgent.renderer.material.color = new Color(0, 0, 0);
-          //  else {
-                IndicatorAgent.GetComponent<Renderer>().material.color = Color.Lerp(IndicatorAgent.GetComponent<Renderer>().material.color, _expressionColor, _colorTime);
-                _colorTime +=  0.1f*Time.deltaTime;
-                if (_colorTime >= 1) _colorTime = 0f;
-                    
-            //}
+            IndicatorAgent.GetComponent<Renderer>().material.color = Color.Lerp(IndicatorAgent.GetComponent<Renderer>().material.color, _expressionColor, _colorTime);
+            _colorTime +=  0.1f*Time.deltaTime;
+            if (_colorTime >= 1) _colorTime = 0f;
         }
-
 
         if (IndicatorCircle.activeInHierarchy) {
-            // if (IsFighting()) //if fighting, set it black
-           //     IndicatorCircle.renderer.material.SetColor("_Emission", new Color(0, 0, 0, 1));
-           // else {
-              //  Color c = Color.Lerp(IndicatorCircle.renderer.material.GetColor("_Emission"), _expressionColor, Time.deltaTime);
-                IndicatorCircle.GetComponent<Renderer>().material.SetColor("_Emission", _expressionColor);
-            //}
-
-            //IndicatorCircle.renderer.material.SetColor("_Emission", IsFighting() ? new Color(0, 0, 0, 1) : _expressionColor);
+            IndicatorCircle.GetComponent<Renderer>().material.SetColor("_Emission", _expressionColor);
         }
 
-
-        
         if (IndicatorParticle.activeInHierarchy) {
             _particleSystem.enableEmission = true;
-            //_particleSystem.Emit(5);
-
             _particleSystem.startColor = new Color(_expressionColor.r, _expressionColor.g, _expressionColor.b, 1f);
             _particleSystem.emissionRate = 100f;       
             _particleSystem.startSize = 0.1f;
             _particleSystem.startSpeed = 0.1f * +_navMeshAgent.radius; //0.1f *2* ((SphereCollider)collider).radius;//  //determines the size of the radius
             _particleSystem.startDelay = 0f;
-           
-            
             ParticleSystem.Particle[] p = new ParticleSystem.Particle[_particleSystem.particleCount + 1];
             int pCnt = _particleSystem.GetParticles(p);
-        
             int [] padRatios = new int[3];
             float moodCnt = (Mathf.Abs(_affectComponent.Mood.x) + Mathf.Abs(_affectComponent.Mood.y) + Mathf.Abs(_affectComponent.Mood.z));
             padRatios[0] = (int)((Mathf.Abs(_affectComponent.Mood.x) * pCnt) / moodCnt);
             padRatios[1] =(int)((Mathf.Abs(_affectComponent.Mood.y) * pCnt) / moodCnt);
             padRatios[2] =(int)((Mathf.Abs(_affectComponent.Mood.z) * pCnt) / moodCnt);
-
             int k = 0;
-
             for (int i = 0; i < padRatios.Length; i++) {
                 for (int j = 0; j < padRatios[i]; j++) {
                     Color ec = _affectComponent.GetPADColor(i);
-                //    Color ec = _expressionColor;
                     p[k++].color = new Color(ec.r, ec.g, ec.b, 1f);
-                  //  p[k++].color = IsFighting() ? new Color(0, 0, 0, 1) : new Color(ec.r, ec.g, ec.b, 1f);
                 }
             }
-            
             _particleSystem.SetParticles(p, pCnt);
-        
         }
         else {
             _particleSystem.enableEmission = false;
         }        
     }
-
 
     public void SteerTo(Vector3 pos) 
     {
@@ -651,16 +451,15 @@ public class AgentComponent: MonoBehaviour {
 	
 	/// Finds the agents around me
 	void OnTriggerEnter(Collider collider) {              
-		if(collider.gameObject.CompareTag("Player"))// name.Contains("Male") || collider.gameObject.name.Contains("Female") || collider.gameObject.name.Contains("Police"))	{			
-		{		    
+		if(collider.gameObject.CompareTag("Player") || collider.gameObject.CompareTag("RealPlayer")) {		    
             if(!CollidingAgents.Contains(collider))
 				CollidingAgents.Add(collider.gameObject);          
 		}		
 	}
 	
 	void OnTriggerExit(Collider collider) {	
-		if(collider.gameObject.CompareTag("Player"))
-        {//name.Contains("Male") || collider.gameObject.name.Contains("Female") || collider.gameObject.name.Contains("Police"))	 {						
+		if(collider.gameObject.CompareTag("Player") || collider.gameObject.CompareTag("RealPlayer"))
+        {					
 			CollidingAgents.Remove(collider.gameObject);            
 		}		
 	}
@@ -684,10 +483,10 @@ public class AgentComponent: MonoBehaviour {
 	    return (!IsDead() && Damage > 1);
 	}
 		
-
 	public void AdjustEmotionalSpeed() {
 	    
 	}
+
 	public void IncreaseSpeed(int c) {
 		float maxSpeed = 3.8f;
 		_navMeshAgent.speed += c * 0.2f*Time.deltaTime;
@@ -734,29 +533,17 @@ public class AgentComponent: MonoBehaviour {
 		return PanicLevel > PanicThreshold;			
 	}
 	
-
-
 	/// If other is in my visual cone 
 	public bool IsVisible(GameObject other, float viewAngle) {
-
         Vector3 orientation = transform.forward;//GetComponent<NavMeshAgent>().velocity;
 		Vector3 distVec = other.transform.position - transform.position ;
         orientation.y = distVec. y  = 0f;        
 		orientation.Normalize();
 		distVec.Normalize ();
-
-        //float angle = MathDefs.VectorAngle(orientation, distVec);
         float angle = Vector3.Angle(orientation, distVec);//Mathf.Acos(Vector3.Dot(distVec, orientation));
-
-      //  Debug.Log(angle);
-        //if(angle >=  _visibilityAngle && angle <= (_visibilityAngle * 2f) )
-
-        //Vector3.Angle ( transform.forward, other.transform.position - transform.position) < coneAngle * 0.5f
-        //Vector3.Angle ( orientation, other.transform.position - transform.position) < coneAngle * 0.5f
         if (angle <= VisibilityAngle)
 			return true;
 		return false; 
-    
 	}
 
     public void LookAt(Vector3 dest, float speed) {
@@ -779,13 +566,17 @@ public class AgentComponent: MonoBehaviour {
     }
     public void Face(GameObject other) 
     {
-        SteerTo(other.transform.position + other.GetComponent<UnityEngine.AI.NavMeshAgent>().desiredVelocity.normalized);
-        //SteerTo(other.transform.position);
+        if (other.CompareTag("Player")) {
+            SteerTo(other.transform.position + other.GetComponent<UnityEngine.AI.NavMeshAgent>().desiredVelocity.normalized);
+        }
+        else if (other.CompareTag("RealPlayer")){
+            SteerTo(other.transform.position);
+        }
     }
 
     public bool IsFacing(GameObject other) {
         //(other.transform.position - transform.position).magnitude < 2f &&
-        return (IsVisible(other, Mathf.PI / 3f) && other.GetComponent<AgentComponent>().IsVisible(this.gameObject, Mathf.PI / 3f));
+        return (IsVisible(other, Mathf.PI / 3f) && other.GetComponent<GeneralStateComponent>().IsVisible(this.gameObject, Mathf.PI / 3f));
     }
     
     public void AddImpact(Vector3 force) {
@@ -796,8 +587,6 @@ public class AgentComponent: MonoBehaviour {
     public bool IsBeingPushed() {
         float pushCoef = Mathf.Abs(_navMeshAgent.velocity.magnitude/_navMeshAgent.speed);
         IsPushed = pushCoef > 5  && pushCoef < 10;
-        //if(IsPushed)
-       // Debug.Log(pushCoef + " " + _navMeshAgent.velocity.magnitude + " " + _navMeshAgent.speed);
         return IsPushed;
     }
 
@@ -808,7 +597,6 @@ public class AgentComponent: MonoBehaviour {
                 if (IsFallen) {
                     _navMeshAgent.updatePosition = false;
                     _navMeshAgent.updateRotation = false;
-                   // _navMeshAgent.Stop(false);
                     _navMeshAgent.avoidancePriority = 0;
                     _navMeshAgent.angularSpeed = 0;
                     _navMeshAgent.speed = 0;
@@ -832,7 +620,6 @@ public class AgentComponent: MonoBehaviour {
                 gameObject.GetComponent<PersonalityMapper>().PersonalityToSteering(); //reset to default values
                 IsFallen = false;
                 IndicatorAgent.transform.Translate(0, 1.5f, 0);
-                
             }
         }
     }
@@ -841,8 +628,7 @@ public class AgentComponent: MonoBehaviour {
         Fall();
         StandUp();
         if (IsFallen) {                        
-            AddDamage(0.1f); //add damage 
-            
+            AddDamage(0.1f); //add damage  
         }
 
     }
@@ -865,6 +651,9 @@ public class AgentComponent: MonoBehaviour {
     public bool IsFighting() {
         return (GetComponent<FightBehavior>() != null);        
     }
+    public bool HasFallen() {
+        return IsFallen;
+    }
     public bool CanFight() {
         if (IsFighting()) //already fighting
             return false;
@@ -873,7 +662,6 @@ public class AgentComponent: MonoBehaviour {
         if (IsFallen)
             return false;
         return true;
-
     }
 
     public IEnumerator WaitAWhile(int seconds) {
@@ -883,28 +671,33 @@ public class AgentComponent: MonoBehaviour {
         
         FinishedWaiting = true;
         
-
         //Dont't forget to set started waiting to false before state change
     }
     
     ///Returns true if a fight conditions are met
     public bool IsGoodToFight(GameObject other) {
-                
         //dist < 5f seklindeydi
-        if (Vector3.Distance(other.transform.position, transform.position) < 3f && CanFight() && other.GetComponent<AgentComponent>().CanFight())
-                    if (_appraisal.DoesStandardExist(other, AppDef.Disapproving) || _appraisal.DoesStandardExist(other.transform.parent.gameObject, AppDef.Disapproving)) 
-                    return true;
+        if (Vector3.Distance(other.transform.position, transform.position) < 3f && CanFight() && other.GetComponent<GeneralStateComponent>().CanFight())
+            // only fight with real player ?
+            if (other.CompareTag("RealPlayer") && Input.GetKey(KeyCode.F)) {
+                return true;
+            }
+            // if (other == null) {
+            //     Debug.LogError("Opponent is null in fight");
+            //     return false;
+            // }   
+            if (other.CompareTag("Player") && (_appraisal.DoesStandardExist(other, AppDef.Disapproving) || _appraisal.DoesStandardExist(other.transform.parent.gameObject, AppDef.Disapproving))) 
+                return true;
         return false;
     }
 
     public bool IsGoodToAttack(GameObject other) {
-        if (Vector3.Distance(other.transform.position, transform.position) < 5f && CanFight() && other.GetComponent<AgentComponent>().CanFight())
+        if (Vector3.Distance(other.transform.position, transform.position) < 5f && CanFight() && other.GetComponent<GeneralStateComponent>().CanFight())
             return true;
         else
             return false;
     }
      
-
 	/// Start a fight with the other agent	
 	public void StartFight(GameObject other, bool isStarter) {
         IsFightStarter = isStarter;
@@ -912,16 +705,13 @@ public class AgentComponent: MonoBehaviour {
             Debug.LogError("Opponent is null in fight");
             return;
         }
-		
 		if(GetComponent("FightBehavior") == null) {
 			this.gameObject.AddComponent<FightBehavior>();            
 		    GetComponent<FightBehavior>().Init(other);
             IsFightStarter = isStarter;
 		}				
-        
 	}
 
-    
     public float TimeSinceLastFight() {
         return Time.time - TimeLastFight;
     }
@@ -977,15 +767,11 @@ public class AgentComponent: MonoBehaviour {
         }
     }
 
-
-
     void OnDrawGizmosSelected() {
         Gizmos.color = Color.magenta;
         if (_navMeshAgent)
             Gizmos.DrawLine(transform.position, transform.position + Impact);
     }
-    
-    
 }
 
 	
