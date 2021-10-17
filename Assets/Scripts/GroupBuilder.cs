@@ -12,8 +12,8 @@ public class GroupBuilder : MonoBehaviour {
         Audience,
         Shopper,
         Protester,
-        Police,  
-        Passenger
+        Police
+        
     }
     public void AssignAgents() {
         AgentComponent[] agentComponents = GetComponentsInChildren<AgentComponent>();
@@ -91,9 +91,7 @@ public class GroupBuilder : MonoBehaviour {
                     _agents[i].AddComponent<ShopperBehavior>();
                     break;
 
-                case (int)RoleName.Passenger:
-                    _agents[i].AddComponent<PassengerBehavior>();
-                    break;
+                
                 case (int)RoleName.Audience:
                     _agents[i].AddComponent<AudienceBehavior>();
                     break;

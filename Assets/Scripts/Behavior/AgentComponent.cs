@@ -1,5 +1,4 @@
-//#define ESCAPES
-#define ASCRIBE
+
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,8 +16,9 @@ public class AgentComponent: MonoBehaviour, GeneralStateComponent {
     public GameObject IndicatorParticle;
     public GameObject IndicatorCircle;
     
+    
     public int Id;
-	public float WalkingSpeed = 1f; //Computed according to Personality
+    public float WalkingSpeed = 1f;//0.02f;//1f; //Computed according to Personality
     private Vector3 _initialPos;
     public float Damage;
     public int GroupId;
@@ -34,6 +34,8 @@ public class AgentComponent: MonoBehaviour, GeneralStateComponent {
     
     Color _expressionColor;
     private float _colorTime;
+
+    const float _maxSpeed = 3.8f;//0.076f;// 3.8f * Time.fixedDeltaTime;
 
     Vector3 _prevPos; //position in a previous frame
     private float _posChange;
@@ -64,6 +66,7 @@ public class AgentComponent: MonoBehaviour, GeneralStateComponent {
         _appraisal = GetComponent<Appraisal>();
         _affectComponent = GetComponent<AffectComponent>();
         _navMeshAgent.speed = WalkingSpeed; //maximum speed
+
         _navMeshAgent.angularSpeed = 360;
         _navMeshAgent.updatePosition = true; //false ? for resetting the position
         GetComponent<PersonalityMapper>().PersonalityToSteering(); //initialize steering parameters according to Personality
@@ -72,10 +75,7 @@ public class AgentComponent: MonoBehaviour, GeneralStateComponent {
         //Set collider size :WARNING: Temporary
         SphereCollider col = (SphereCollider)this.GetComponent<Collider>();
         col.radius = 2f; //to test escapes and ascribe --normally 4f
-#if ASCRIBE
-	    col.radius = 10f;
-	    VisibilityAngle = 360;
-#endif
+
         _visibilityDist = col.radius; //* 2f;
         _prevPos = transform.position;
         _navMeshAgent.obstacleAvoidanceType = UnityEngine.AI.ObstacleAvoidanceType.HighQualityObstacleAvoidance;//ObstacleAvoidanceType.NoObstacleAvoidance; 
@@ -207,7 +207,7 @@ public class AgentComponent: MonoBehaviour, GeneralStateComponent {
         // impact vanishes to zero over time
         Impact = Vector3.Lerp(Impact, Vector3.zero, 2 * Time.deltaTime);
     }
-    void Update() {
+    void FixedUpdate() {
         AffectUpdate(); //our method
         _expressionColor = _affectComponent.GetExpressionColor();
         UpdateIndicator();
@@ -236,21 +236,11 @@ public class AgentComponent: MonoBehaviour, GeneralStateComponent {
 
         if(VisibilityMesh != null)
             RenderViewingZone();
-#if ESCAPES
-        EmotionalBehaviorUpdateEscapes();
-      
-#else
-           EmotionalBehaviorUpdate();
-#endif
+
+
     }
 
-    void EmotionalBehaviorUpdateEscapes() {
-        _navMeshAgent.speed = Mathf.Lerp(_navMeshAgent.speed, 3.8f, _affectComponent.Emotion[(int)EType.Fear]);
-    }
-
-    void EmotionalBehaviorUpdateAscribe() {
-        _navMeshAgent.speed = Mathf.Lerp(_navMeshAgent.speed, 3.8f, _affectComponent.Emotion[(int)EType.Fear]);
-    }
+    
 
     //Select behaviors based on emotions
     //Agent component script is executed before role components, so current actions in role components overwrite the ones here
@@ -259,7 +249,7 @@ public class AgentComponent: MonoBehaviour, GeneralStateComponent {
             case (int)MType.Hostile:
                 if (!IsPolice()) {
                     if (_affectComponent.GetExpressionRange() == EmotionRange.High) {
-                        _navMeshAgent.speed = Mathf.Lerp(_navMeshAgent.speed, 3.8f, Time.deltaTime);
+                        _navMeshAgent.speed = Mathf.Lerp(_navMeshAgent.speed, _maxSpeed, Time.deltaTime);
                         foreach (GameObject c in CollidingAgents) {
                             if (IsGoodToFight(c)) {
                                 StartFight(c, true);
@@ -298,7 +288,7 @@ public class AgentComponent: MonoBehaviour, GeneralStateComponent {
                 if (IsProtester())
                     _animationSelector.SelectAction("CLAPPING");
                 else if(IsShopper()) {
-                     _navMeshAgent.speed = Mathf.Lerp(_navMeshAgent.speed, 3f, Time.deltaTime);                  
+                     _navMeshAgent.speed = Mathf.Lerp(_navMeshAgent.speed, _maxSpeed, Time.deltaTime);                  
                 }                              
                 break;
             case (int)MType.Docile:
@@ -309,10 +299,10 @@ public class AgentComponent: MonoBehaviour, GeneralStateComponent {
                 break;   
             case (int)MType.Anxious:
                 if (_affectComponent.GetExpressionRange() == EmotionRange.High) {
-                    _navMeshAgent.speed =  Mathf.Lerp(_navMeshAgent.speed, 3.8f, Time.deltaTime);
+                    _navMeshAgent.speed =  Mathf.Lerp(_navMeshAgent.speed, _maxSpeed, Time.deltaTime);
                 }
                 else if (_affectComponent.GetExpressionRange() == EmotionRange.Moderate)
-                    _navMeshAgent.speed = Mathf.Lerp(_navMeshAgent.speed, 3.8f, Time.deltaTime);
+                    _navMeshAgent.speed = Mathf.Lerp(_navMeshAgent.speed, _maxSpeed, Time.deltaTime);
                 else
                     _navMeshAgent.speed = Mathf.Lerp(_navMeshAgent.speed, WalkingSpeed, Time.deltaTime);
                 break;
@@ -338,29 +328,7 @@ public class AgentComponent: MonoBehaviour, GeneralStateComponent {
         }
     }
 
-    void AffectUpdateAscribe() {
-        float qR = _affectComponent.Emotion[(int) EType.Fear]; //my fear level
-        foreach (GameObject c in CollidingAgents) {}
-    }
-
-    void AffectUpdateEscapes() {
-        _navMeshAgent.updatePosition = true;
-        _navMeshAgent.updateRotation = true;
-        float maxFear = -1000;
-        foreach (GameObject c in CollidingAgents) {
-            //Ensures that agents within a radius are considered
-            if (!c.CompareTag("RealPlayer")) {
-                float fear = c.GetComponent<AffectComponent>().Emotion[(int) EType.Fear];
-                if (fear >= maxFear) {
-                    maxFear = fear;
-                }
-            }
-        }
-
-        if(maxFear > -1000)
-        _affectComponent.Emotion[(int)EType.Fear] = maxFear;
-        _affectComponent.ComputeMood();
-    }
+    
   
 	void AffectUpdate () {
         if (!IsFighting()) {
@@ -488,10 +456,10 @@ public class AgentComponent: MonoBehaviour, GeneralStateComponent {
 	}
 
 	public void IncreaseSpeed(int c) {
-		float maxSpeed = 3.8f;
+		
 		_navMeshAgent.speed += c * 0.2f*Time.deltaTime;
-        if (_navMeshAgent.speed > maxSpeed)
-            _navMeshAgent.speed = maxSpeed; 		
+        if (_navMeshAgent.speed > _maxSpeed)
+            _navMeshAgent.speed = _maxSpeed; 		
 	}
 
 	public void DecreaseSpeed(int c) {

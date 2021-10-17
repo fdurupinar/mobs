@@ -128,6 +128,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
             m_CollisionFlags = m_CharacterController.Move(m_MoveDir*Time.fixedDeltaTime);
 
+
             ProgressStepCycle(speed);
             UpdateCameraPosition(speed);
 

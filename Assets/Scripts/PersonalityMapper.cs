@@ -20,7 +20,7 @@ public class PersonalityMapper: MonoBehaviour
 	//    float minSpeed = 0.3f;
         float maxSpeed = 1.6f;//1.4f;
 	    float minSpeed = 1.0f;// 1.0f;
-        GetComponent<UnityEngine.AI.NavMeshAgent>().speed = GetComponent<AgentComponent>().WalkingSpeed = (0.5f* personality[(int)OCEAN.E] + 0.5f) * (maxSpeed - minSpeed) + minSpeed; //Adjusts current speed as well
+        GetComponent<UnityEngine.AI.NavMeshAgent>().speed = GetComponent<AgentComponent>().WalkingSpeed = ((0.5f* personality[(int)OCEAN.E] + 0.5f) * (maxSpeed - minSpeed) + minSpeed); //Adjusts current speed as well
 
 	    GetComponent<UnityEngine.AI.NavMeshAgent>().acceleration = 1f;
 

@@ -1,9 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Pickup : MonoBehaviour {
+public class Pickup : MonoBehaviour
+{
 
     private Inventory inventory;
     public GameObject itemButton;
@@ -21,11 +21,14 @@ public class Pickup : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("RealPlayer") && Input.GetKey(KeyCode.G)) {
+        if (other.CompareTag("RealPlayer") && Input.GetKey(KeyCode.G))
+        {
+            
 
             for (int i = 0; i < inventory.slots.Length; i++)
             {
-                if (inventory.isFull[i] == false) { // check whether the slot is EMPTY
+                if (inventory.isFull[i] == false)
+                { // check whether the slot is EMPTY
                     Instantiate(itemButton, inventory.slots[i].transform, false);
 
                     if (this.gameObject.CompareTag("Ipad"))
@@ -43,30 +46,31 @@ public class Pickup : MonoBehaviour {
                     }
                     //Debug.Log("Collide 2");
                     Destroy(gameObject);
-                   
+
                     inventory.isFull[i] = true;
                     break;
                 }
             }
         }
-        
+
     }
 
     private void OnDestroy()
     {
-        if (inventory.isFull[4])
-        {
-            Debug.Log("You are win!");
-            GameObject timer = GameObject.Find("LevelTimer");
-            Destroy(timer);
-            GameObject[] Fireworksystem = GameObject.FindGameObjectsWithTag("Fireworks");
-            foreach (GameObject go in Fireworksystem)
-            {
-                go.GetComponent<ParticleSystem>().Play();
-            }
-        }
-        else if (Time.timeSinceLevelLoad > 300) {
-            Debug.Log("You are lost!");
-        }
+        //if (inventory.isFull[4])
+        //{
+        //    Debug.Log("You are win!");
+        //    GameObject timer = GameObject.Find("LevelTimer");
+        //    Destroy(timer);
+        //    GameObject[] Fireworksystem = GameObject.FindGameObjectsWithTag("Fireworks");
+        //    foreach (GameObject go in Fireworksystem)
+        //    {
+        //        go.GetComponent<ParticleSystem>().Play();
+        //    }
+        //}
+        //else if (Time.timeSinceLevelLoad > 300)
+        //{
+        //    Debug.Log("You are lost!");
+        //}
     }
 }

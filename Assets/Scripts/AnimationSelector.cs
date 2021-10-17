@@ -25,8 +25,8 @@ public class AnimationSelector : MonoBehaviour {
     private AffectComponent _affect;
     
     public List<ActionType> Actions = new List<ActionType>();
-    private float _cumSpeed = 0f;
-    private float _moveSpeed = 0f;
+    //private float _cumSpeed = 0f;
+    //private float _moveSpeed = 0f;
     private const int TheStepCnt = 3;
 
     
@@ -39,8 +39,7 @@ public class AnimationSelector : MonoBehaviour {
     public Vector3 AvgDesiredVel ;
     public List<Vector3> CumDesiredVel;
 
-    private Quaternion _desiredOrientation;
-    private float _angleDiff;
+    
 
     private float _speedDampTime = 0.1f;
     private float _angularSpeedDampTime = 0.25f;
@@ -64,9 +63,6 @@ public class AnimationSelector : MonoBehaviour {
 
 	    CumDesiredVel = new List<Vector3>();
 
-        Time.captureFramerate = 15;
-
-        _desiredOrientation = transform.rotation;
 
         _prevPos = transform.position;
 	    _navMeshAgent.stoppingDistance = 0f;

@@ -281,10 +281,12 @@ public class ShopperBehavior : MonoBehaviour {
                 if (_desiredObj != null) {
                     _agentComponent.SteerTo(_desiredObj.transform.position);
                     float dist = Vector2.Distance(new Vector2(_desiredObj.transform.position.x, _desiredObj.transform.position.z), new Vector2(transform.position.x, transform.position.z));
+                
                     if (dist < 1f) {//Pick up object                        
                         State = (int)ShoppingState.PickingUpObject;
                         
                     }
+
                 }
                 else {
                     if (_totalObjCnt == 0) { //all objects in my shelf are consumed
@@ -333,7 +335,8 @@ public class ShopperBehavior : MonoBehaviour {
             else if (_agentComponent.StartedWaiting && !_agentComponent.FinishedWaiting && _desiredObj.GetComponent<ObjComponent>().Achieved == false) { //started waiting
                     if(_desiredObj.GetComponent<ObjComponent>().ClosestAgent.Equals(this.gameObject))
                         _desiredObj.position = _rightHand.position;
-                    _agentComponent.HandPos = _desiredObj.position;//+ Vector3.up * 0.1f;    
+                    _agentComponent.HandPos = _desiredObj.position;//+ Vector3.up * 0.1f;
+                    PickedObject();
             }
                 
             if(_agentComponent.FinishedWaiting) {                            

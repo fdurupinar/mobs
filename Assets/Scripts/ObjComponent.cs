@@ -58,13 +58,41 @@ public class ObjComponent : MonoBehaviour {
                 }
             }
         }
+
     }
 
-    void OnTriggerExit(Collider collider) {
+
+	private void OnTriggerStay(Collider other) {
+        if (other.CompareTag("RealPlayer") && Input.GetKey(KeyCode.X)) {
+            ClosestAgent = other.gameObject;
+            Debug.Log("grabbed");
+
+            if (!_collidingAgents.Contains(other)) {
+                _collidingAgents.Add(other.gameObject);
+                //   if(collider.gameObject.GetComponent<ShopperBehavior>().DeactiveObjs.Contains(this.gameObject) == false) //if agent sees this object, add it to the seen list
+                //       collider.gameObject.GetComponent<ShopperBehavior>().DeactiveObjs.Add(this.gameObject);
+
+
+                Vector3 v1 = other.gameObject.transform.position;
+                Vector3 v2 = this.gameObject.transform.position;
+                v1.y = v2.y = 0f;
+                float dist = Vector3.Distance(v1, v2);
+                if (dist < minDist) {
+                    minDist = dist;
+                    ClosestAgent = other.gameObject;
+                }
+            }
+        }
+
+    }
+    
+
+	void OnTriggerExit(Collider collider) {
         if (collider.gameObject.CompareTag("Player")) {
             _collidingAgents.Remove(collider.gameObject);
             UpdateClosestAgent();
         }
+
     }
 
     void UpdateClosestAgent() {

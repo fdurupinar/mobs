@@ -435,24 +435,11 @@ public class AffectComponent : MonoBehaviour {
             c = new Color(1, 1, 1);
 
          return Color.Lerp(new Color(0.5f, 0.5f, 0.5f), c, Mood.magnitude);
-         
 
-       /* if (moodOctant == (int)MType.Exuberant || moodOctant == (int)MType.Docile || moodOctant == (int)MType.Dependent)
-            c = new Color(1, 1, 0);
-        else if (moodOctant == (int)MType.Disdainful || moodOctant == (int)MType.Bored) //sad
-            c = new Color(0, 0, 1);
-        else if (moodOctant == (int)MType.Anxious)
-            c = new Color(0, 1, 0);
-        else if (moodOctant == (int)MType.Hostile)
-            c = new Color(1, 0, 0);
-        else
-            c = new Color(1, 1, 1);
 
-         */   
-        Color expColor = Color.Lerp(Color.white,c, Mood.magnitude);
-         return expColor;
-            
-     }
+       
+
+    }
 
 
     public void UpdatePersonality(float[] persMean, float[] persStd) {

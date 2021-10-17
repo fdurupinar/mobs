@@ -31,9 +31,7 @@ public class CrowdManager : MonoBehaviour {
         foreach (ShopperBehavior s in shopperComponents)
             s.Restart();
 
-        PassengerBehavior[] passengerComponents = FindObjectsOfType(typeof(PassengerBehavior)) as PassengerBehavior[];
-        foreach (PassengerBehavior p in passengerComponents)
-            p.Restart();
+  
 
         AudienceBehavior[] audienceComponents = FindObjectsOfType(typeof(AudienceBehavior)) as AudienceBehavior[];
         foreach (AudienceBehavior a in audienceComponents)

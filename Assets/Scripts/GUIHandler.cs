@@ -1,12 +1,13 @@
 using UnityEngine;
-using System.Collections;
+
 using Debug = System.Diagnostics.Debug;
+using UnityEngine.SceneManagement;
 
 public class GUIHandler : MonoBehaviour {
 	
 	static public Vector3 PickedPoint;
     RaycastHit _hit;
-    private bool _getScreenShot = false;
+    
 
     public bool ContagionMode;
 
@@ -22,7 +23,8 @@ public class GUIHandler : MonoBehaviour {
 	   //GUILayout.Label("Time: "+ Time.time + " s.");
         if (GUILayout.Button("Reset")) {
             GameObject.Find("Crowd").GetComponent<CrowdManager>().Restart();
-            Application.LoadLevel(0);       
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            
         }
 
 	    if (GUILayout.Button("Agent")) {
@@ -96,16 +98,12 @@ public class GUIHandler : MonoBehaviour {
 
 
 
-        _getScreenShot = GUILayout.Toggle(_getScreenShot, "Screenshot");
-        GetComponent<Screenshot>().enabled = _getScreenShot;
+        
         GUILayout.EndArea();
       
     }
         
-	void Awake() {
-        GetComponent<Screenshot>().enabled = _getScreenShot;
-	}
-
+	
     
 	void Update() {
        
@@ -158,18 +156,7 @@ public class GUIHandler : MonoBehaviour {
 
         }
 
-	    if (Input.GetKey("s")) {
-            _getScreenShot = !_getScreenShot;
-
-            GetComponent<Screenshot>().enabled = _getScreenShot;
-            
-        }
-
-        if (Input.GetKey("a")) {
-
-            ScreenCapture.CaptureScreenshot("SCREENSHOTS\\screenshot" + Time.time + ".bmp");
-
-        }
+	    
 
         
         if(Input.GetKey("r")) {
@@ -180,42 +167,15 @@ public class GUIHandler : MonoBehaviour {
 
         if (Input.GetKey("1")) {
             Time.timeScale = 1;
-            /*   GameObject cam1 = GameObject.Find("Camera1");
-            GameObject cam2 = GameObject.Find("Camera2");
-            if (cam1 != null) {
-                cam1.camera.rect = new Rect(0, 0, 1, 1);
-                cam1.GetComponent<Screenshot>().enabled = _getScreenShot;
-            }
-            if (cam2 != null) {
-                cam2.camera.rect = new Rect(0, 0, 0, 0);
-                cam2.GetComponent<Screenshot>().enabled = !_getScreenShot;
-            }*/
+            
         }
         else if (Input.GetKey("2")) {
             Time.timeScale = 2;
-            /*GameObject cam1 = GameObject.Find("Camera1");
-            GameObject cam2 = GameObject.Find("Camera2");
-            if (cam1 != null) {
-                cam1.camera.rect = new Rect(0, 0, 0, 0);
-                cam1.GetComponent<Screenshot>().enabled = !_getScreenShot;
-            }
-            if (cam2 != null) {
-                cam2.camera.rect = new Rect(0, 0, 1, 1);
-                cam2.GetComponent<Screenshot>().enabled = _getScreenShot;
-            }*/
+         
         }
         else if (Input.GetKey("3")) {
             Time.timeScale = 3;
-           /* GameObject cam1 = GameObject.Find("Camera1");
-            GameObject cam2 = GameObject.Find("Camera2");
-            if (cam1 != null) {
-                cam1.camera.rect = new Rect(0, 0, 0.5f, 1);
-                cam1.GetComponent<Screenshot>().enabled = _getScreenShot;
-            }
-            if (cam2 != null) {
-                cam2.camera.rect = new Rect(0.5f, 0, 0.5f, 1);
-                cam2.GetComponent<Screenshot>().enabled = !_getScreenShot;
-            }*/
+         
         }
            
         else if (Input.GetKey("4")) {
@@ -226,6 +186,7 @@ public class GUIHandler : MonoBehaviour {
         }
         else if (Input.GetKey("6")) {
             Time.timeScale = 0.25f;
+            
         }
         else if (Input.GetKey("7")) {
             Time.timeScale = 0.1f;

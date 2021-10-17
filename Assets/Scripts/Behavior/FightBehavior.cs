@@ -153,7 +153,8 @@ public class FightBehavior : MonoBehaviour {
    	
 	public void FinishFight() {
         if (!_agentComponent.IsFallen) {
-            _navMeshAgent.Resume();
+            //_navMeshAgent.Resume();
+            GetComponent<UnityEngine.AI.NavMeshAgent>().isStopped = false;
             GetComponent<UnityEngine.AI.NavMeshAgent>().updatePosition = true; //rotation is updated by navmeshagent
             GetComponent<UnityEngine.AI.NavMeshAgent>().updateRotation = true; //rotation is updated by navmeshagent
         }
@@ -161,7 +162,9 @@ public class FightBehavior : MonoBehaviour {
         foreach (GameObject c in Watchers) {
             UpdateAppraisalStatusOfOther(c);
             c.GetComponent<AgentComponent>().IsWatchingFight = false;
-            c.GetComponent<UnityEngine.AI.NavMeshAgent>().Resume();
+            //c.GetComponent<UnityEngine.AI.NavMeshAgent>().Resume();
+            c.GetComponent<UnityEngine.AI.NavMeshAgent>().isStopped = false;
+
         }
 
         _agentComponent.TimeLastFight = Time.time;
