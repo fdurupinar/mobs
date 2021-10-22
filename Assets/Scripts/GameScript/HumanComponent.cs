@@ -68,4 +68,8 @@ public class HumanComponent : MonoBehaviour, GeneralStateComponent{
     public bool IsShopper() {
         return false;
     }
+
+	//void OnControllerColliderHit() {
+
+	//}
 }
