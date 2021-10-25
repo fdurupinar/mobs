@@ -5890,6 +5890,7 @@ GameObject:
   - component: {fileID: 178527268}
   - component: {fileID: 178527267}
   - component: {fileID: 178527264}
+  - component: {fileID: 178527265}
   m_Layer: 0
   m_Name: justin 2(Clone)
   m_TagString: Player
@@ -5932,6 +5933,20 @@ MonoBehaviour:
   _rightHand: {fileID: 0}
   _leftHand: {fileID: 0}
   _state: 0
+--- !u!136 &178527265
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178527262}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.914174
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.8957467, z: 0}
 --- !u!114 &178527267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6160,7 +6175,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 178527262}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -11965,6 +11980,7 @@ GameObject:
   - component: {fileID: 379700373}
   - component: {fileID: 379700372}
   - component: {fileID: 379700369}
+  - component: {fileID: 379700370}
   m_Layer: 0
   m_Name: carl 3(Clone)
   m_TagString: Player
@@ -12006,6 +12022,20 @@ MonoBehaviour:
   _rightHand: {fileID: 0}
   _leftHand: {fileID: 0}
   _state: 0
+--- !u!136 &379700370
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 379700367}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.914174
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.8957467, z: 0}
 --- !u!114 &379700372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12234,7 +12264,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 379700367}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -18633,6 +18663,7 @@ GameObject:
   - component: {fileID: 585393438}
   - component: {fileID: 585393437}
   - component: {fileID: 585393434}
+  - component: {fileID: 585393435}
   m_Layer: 0
   m_Name: Alexis(Clone)
   m_TagString: Player
@@ -18674,6 +18705,20 @@ MonoBehaviour:
   _rightHand: {fileID: 0}
   _leftHand: {fileID: 0}
   _state: 0
+--- !u!136 &585393435
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585393432}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.914174
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.8957467, z: 0}
 --- !u!114 &585393437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18902,7 +18947,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 585393432}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -19966,6 +20011,7 @@ GameObject:
   - component: {fileID: 625039670}
   - component: {fileID: 625039669}
   - component: {fileID: 625039666}
+  - component: {fileID: 625039667}
   m_Layer: 0
   m_Name: carl 2(Clone)
   m_TagString: Player
@@ -20007,6 +20053,20 @@ MonoBehaviour:
   _rightHand: {fileID: 0}
   _leftHand: {fileID: 0}
   _state: 0
+--- !u!136 &625039667
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 625039664}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.914174
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.8957467, z: 0}
 --- !u!114 &625039669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20235,7 +20295,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 625039664}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -21710,6 +21770,7 @@ GameObject:
   - component: {fileID: 682566329}
   - component: {fileID: 682566328}
   - component: {fileID: 682566325}
+  - component: {fileID: 682566326}
   m_Layer: 0
   m_Name: carl 1(Clone)
   m_TagString: Player
@@ -21751,6 +21812,20 @@ MonoBehaviour:
   _rightHand: {fileID: 0}
   _leftHand: {fileID: 0}
   _state: 0
+--- !u!136 &682566326
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 682566323}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.914174
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.8957467, z: 0}
 --- !u!114 &682566328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21979,7 +22054,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 682566323}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -33265,6 +33340,7 @@ GameObject:
   - component: {fileID: 1137195566}
   - component: {fileID: 1137195563}
   - component: {fileID: 1137195564}
+  - component: {fileID: 1137195565}
   m_Layer: 0
   m_Name: Mia 1(Clone)
   m_TagString: Player
@@ -33330,6 +33406,20 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 990b4ecdd6b164e8396145a80724cce8, type: 3}
   - {fileID: 21300000, guid: c978ccceed73447f49179bd47de332a1, type: 3}
   - {fileID: 21300000, guid: d57aee2b2cbd64a67bf72b9ff58ea235, type: 3}
+--- !u!136 &1137195565
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1137195561}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.914174
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.8957467, z: 0}
 --- !u!114 &1137195566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33558,7 +33648,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1137195561}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -35062,6 +35152,7 @@ GameObject:
   - component: {fileID: 1198713422}
   - component: {fileID: 1198713421}
   - component: {fileID: 1198713418}
+  - component: {fileID: 1198713419}
   m_Layer: 0
   m_Name: justin(Clone)
   m_TagString: Player
@@ -35104,6 +35195,20 @@ MonoBehaviour:
   _rightHand: {fileID: 0}
   _leftHand: {fileID: 0}
   _state: 0
+--- !u!136 &1198713419
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1198713416}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.914174
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.8957467, z: 0}
 --- !u!114 &1198713421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35332,7 +35437,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1198713416}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -41621,6 +41726,7 @@ GameObject:
   - component: {fileID: 1418013030}
   - component: {fileID: 1418013029}
   - component: {fileID: 1418013026}
+  - component: {fileID: 1418013027}
   m_Layer: 0
   m_Name: justin 1(Clone)
   m_TagString: Player
@@ -41663,6 +41769,20 @@ MonoBehaviour:
   _rightHand: {fileID: 0}
   _leftHand: {fileID: 0}
   _state: 0
+--- !u!136 &1418013027
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1418013024}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.914174
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.8957467, z: 0}
 --- !u!114 &1418013029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41891,7 +42011,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1418013024}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -42176,6 +42296,7 @@ GameObject:
   - component: {fileID: 1424092779}
   - component: {fileID: 1424092778}
   - component: {fileID: 1424092775}
+  - component: {fileID: 1424092776}
   m_Layer: 0
   m_Name: Alexis 3(Clone)
   m_TagString: Player
@@ -42217,6 +42338,20 @@ MonoBehaviour:
   _rightHand: {fileID: 0}
   _leftHand: {fileID: 0}
   _state: 0
+--- !u!136 &1424092776
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424092773}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.914174
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.8957467, z: 0}
 --- !u!114 &1424092778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42445,7 +42580,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1424092773}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -42793,6 +42928,7 @@ GameObject:
   - component: {fileID: 1433320759}
   - component: {fileID: 1433320758}
   - component: {fileID: 1433320755}
+  - component: {fileID: 1433320756}
   m_Layer: 0
   m_Name: Alexis 2(Clone)
   m_TagString: Player
@@ -42834,6 +42970,20 @@ MonoBehaviour:
   _rightHand: {fileID: 0}
   _leftHand: {fileID: 0}
   _state: 0
+--- !u!136 &1433320756
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433320753}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.914174
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.8957467, z: 0}
 --- !u!114 &1433320758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43062,7 +43212,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1433320753}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -60534,7 +60684,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2082720270}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 1
@@ -61763,6 +61913,7 @@ GameObject:
   - component: {fileID: 2138002021}
   - component: {fileID: 2138002020}
   - component: {fileID: 2138002017}
+  - component: {fileID: 2138002018}
   m_Layer: 0
   m_Name: justin 3(Clone)
   m_TagString: Player
@@ -61805,6 +61956,20 @@ MonoBehaviour:
   _rightHand: {fileID: 0}
   _leftHand: {fileID: 0}
   _state: 0
+--- !u!136 &2138002018
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2138002015}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.914174
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.8957467, z: 0}
 --- !u!114 &2138002020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62033,7 +62198,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2138002015}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5

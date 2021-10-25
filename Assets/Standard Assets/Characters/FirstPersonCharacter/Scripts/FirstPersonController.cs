@@ -245,6 +245,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private void OnControllerColliderHit(ControllerColliderHit hit)
         {
             Rigidbody body = hit.collider.attachedRigidbody;
+            float pushPower = 2.0F;
+
             //dont move the rigidbody if the character is on top of it
             if (m_CollisionFlags == CollisionFlags.Below)
             {
@@ -255,7 +257,23 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 return;
             }
-            body.AddForceAtPosition(m_CharacterController.velocity*0.1f, hit.point, ForceMode.Impulse);
-        }
-    }
+
+
+			//body.AddForceAtPosition(m_CharacterController.velocity*0.1f, hit.point, ForceMode.Impulse);
+
+
+			// Calculate push direction from move direction,
+			// we only push objects to the sides never up and down
+			Vector3 pushDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
+
+			// If you know how fast your character is trying to move,
+			// then you can also multiply the push velocity by that.
+
+			// Apply the push
+			body.velocity = pushDir * pushPower;
+   
+
+
+		}
+	}
 }
