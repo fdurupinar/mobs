@@ -43,13 +43,12 @@ public class Pickup : MonoBehaviour {
                     }
                     //Debug.Log("Collide 2");
                     Destroy(gameObject);
-                   
+
                     inventory.isFull[i] = true;
                     break;
                 }
             }
         }
-        
     }
 
     private void OnDestroy()

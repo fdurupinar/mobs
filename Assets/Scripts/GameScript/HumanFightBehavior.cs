@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HumanFightBehavior : MonoBehaviour
 {
@@ -33,7 +34,7 @@ public class HumanFightBehavior : MonoBehaviour
 				LostProduct();
 			}
 			if (opponentComponent.IsDead()) {
-				//GrabProduct();
+				GrabProdcut();
 			}
 			
 			if (Input.GetKey(KeyCode.F)) { 
@@ -48,26 +49,27 @@ public class HumanFightBehavior : MonoBehaviour
 	private void LostProduct() {
 		for (int i = inventory.slots.Length - 1; i >= 0; i--) {
 			if (inventory.isFull[i]) {
-				// inventory.slots[i].GetComponent<Image>().sprite = null;
-	 			// inventory.isFull[i] = false;
-	 			// break;
-			}
+                inventory.slots[i].GetComponent<Image>().sprite = null;
+                inventory.isFull[i] = false;
+                break;
+            }
 		}
 
 	}
 
-	private void GrabProdcut() { // need modifying
-		for (int i = 0; i < inventory.slots.Length; i++) {
-			// if (inventory.isFull[i] == false) {
-			// 	Instantiate(itemButton, inventory.slots[i].transform, false);
-			// 	int idx = Random.Range(0,3);
-			// 	inventory.slots[i].GetComponent<Image>().sprite = inventory.sprites[idx];
-	 		//     inventory.isFull[i] = true;
-			// 	break;
-			// }
-			
-		}
-	}
+	private void GrabProdcut() { 
+        for (int i = 0; i < inventory.slots.Length; i++)
+        {
+            if (inventory.isFull[i] == false)
+            {
+                int idx = Random.Range(0, 3);
+                inventory.slots[i].GetComponent<Image>().sprite = inventory.sprites[idx];
+                inventory.isFull[i] = true;
+                break;
+            }
+
+        }
+    }
 
 	public void FinishFight() {
         opponentComponent.TimeLastFight = Time.time;
