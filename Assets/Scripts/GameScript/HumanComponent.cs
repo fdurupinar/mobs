@@ -24,6 +24,10 @@ public class HumanComponent : MonoBehaviour, GeneralStateComponent{
     public bool IsFighting() {
         return (GetComponent<HumanFightBehavior>() != null);
     }
+    public bool IsDead()
+    {
+        return Damage > 3;
+    }
     public bool IsWounded() {
         return Damage > 1;
     }
@@ -57,7 +61,7 @@ public class HumanComponent : MonoBehaviour, GeneralStateComponent{
         return Time.time - TimeLastFight;
     }
     public void AddDamage(float amount) {
-        Damage += amount*Random.Range(0, 2) * Time.deltaTime;
+        Damage += amount * Random.Range(0, 2) * Time.deltaTime;
     }
 
     public void Heal() {

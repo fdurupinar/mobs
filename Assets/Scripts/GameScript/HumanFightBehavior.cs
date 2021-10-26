@@ -42,6 +42,11 @@ public class HumanFightBehavior : MonoBehaviour
 				//opponentComponent.AddDamage(0.4f); // no need add damage to AI agent, they'll add damage by themself
 				Debug.Log("Real Player's damage points: " + humanComponent.Damage);
 				Debug.Log("AI's damage  points: " + opponentComponent.Damage);
+
+				if (opponentComponent.Damage > 0.1) {
+					opponentComponent.IsDead();
+					GrabProdcut();
+				}
 			}
 		}
 	}
