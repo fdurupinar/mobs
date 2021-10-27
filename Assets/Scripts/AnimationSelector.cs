@@ -25,7 +25,7 @@ public class AnimationSelector : MonoBehaviour {
     private AffectComponent _affect;
     
     public List<ActionType> Actions = new List<ActionType>();
-    private float _cumSpeed = 0f;
+    //private float _cumSpeed = 0f;
     private float _moveSpeed = 0f;
     private const int TheStepCnt = 3;
 

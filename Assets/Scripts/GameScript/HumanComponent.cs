@@ -24,6 +24,10 @@ public class HumanComponent : MonoBehaviour, GeneralStateComponent{
     public bool IsFighting() {
         return (GetComponent<HumanFightBehavior>() != null);
     }
+    
+    public bool isLost() {
+        return Damage > 0.1;
+    }
     public bool IsDead()
     {
         return Damage > 3;

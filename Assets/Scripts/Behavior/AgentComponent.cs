@@ -468,6 +468,10 @@ public class AgentComponent: MonoBehaviour, GeneralStateComponent {
 	    Damage += amount*Random.Range(0, 2) * Time.deltaTime;
 	}
 
+    public bool isLost() {
+        return Damage > 0.1;
+    }
+
 	public void Heal() {
         if (IsWounded()) {
             Damage -= 0.1f * Time.deltaTime;

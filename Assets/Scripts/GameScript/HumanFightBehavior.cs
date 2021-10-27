@@ -30,25 +30,21 @@ public class HumanFightBehavior : MonoBehaviour
 			FinishFight();
 		}
 		else {
-		    if (humanComponent.IsWounded()) {
-				LostProduct();
-			}
-			if (opponentComponent.IsDead()) {
-				GrabProdcut();
-			}
-			
 			if (Input.GetKey(KeyCode.F)) { 
 				humanComponent.AddDamage(opponentComponent.IsFighting() ? 0.4f : 0f); // add damage to itself
 				//opponentComponent.AddDamage(0.4f); // no need add damage to AI agent, they'll add damage by themself
 				Debug.Log("Real Player's damage points: " + humanComponent.Damage);
 				Debug.Log("AI's damage  points: " + opponentComponent.Damage);
 
-				if (opponentComponent.Damage > 0.1) {
-					opponentComponent.IsDead();
+				if (opponentComponent.isLost()) {
 					GrabProdcut();
 				}
+
+				if (humanComponent.isLost()) {
+					LostProduct();
+				}
 			}
-		}
+		} 
 	}
 
 	private void LostProduct() {

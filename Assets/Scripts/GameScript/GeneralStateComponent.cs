@@ -12,4 +12,5 @@ public interface GeneralStateComponent {
     public void AddDamage(float amount);
     public void Heal();
     public bool IsShopper();
+    public bool isLost();
 }

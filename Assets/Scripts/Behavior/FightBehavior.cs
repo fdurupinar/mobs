@@ -48,7 +48,7 @@ public class FightBehavior : MonoBehaviour {
                 _animationSelector.SelectAction("WRITHING");
 		}
 		else {
-		    _agentComponent.AddDamage(_opponentComponent.IsPolice() && Opponent.CompareTag("Player") ? 0.4f : 0.05f); // add damage to itself
+		    _agentComponent.AddDamage(_opponentComponent.IsPolice() ? 0.4f : 0.05f); // add damage to itself
 
 		    if (Vector3.Distance(transform.position, Opponent.transform.position) > 1) {
                 _navMeshAgent.updatePosition = true;

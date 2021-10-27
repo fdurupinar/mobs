@@ -172,11 +172,11 @@ public class GUIHandler : MonoBehaviour {
         }
 
         
-        if(Input.GetKey("r")) {
+        // if(Input.GetKey("r")) {
 
-            if(! GameObject.Find("Arrow").GetComponent<ArrowBehavior>().RecordSignal)
-                GameObject.Find("Arrow").GetComponent<ArrowBehavior>().RecordSignal = true;
-        }
+        //     if(! GameObject.Find("Arrow").GetComponent<ArrowBehavior>().RecordSignal)
+        //         GameObject.Find("Arrow").GetComponent<ArrowBehavior>().RecordSignal = true;
+        // }
 
         if (Input.GetKey("1")) {
             Time.timeScale = 1;

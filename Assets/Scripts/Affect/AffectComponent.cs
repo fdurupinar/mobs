@@ -448,10 +448,9 @@ public class AffectComponent : MonoBehaviour {
         else
             c = new Color(1, 1, 1);
 
-         */   
         Color expColor = Color.Lerp(Color.white,c, Mood.magnitude);
          return expColor;
-            
+         */  
      }
 
 
