@@ -50,7 +50,7 @@ public class HumanFightBehavior : MonoBehaviour
 	private void LostProduct() {
 		for (int i = inventory.slots.Length - 1; i >= 0; i--) {
 			if (inventory.isFull[i]) {
-                inventory.slots[i].GetComponent<Image>().sprite = null;
+                inventory.slots[i].GetComponent<Image>().sprite = inventory.box;
                 inventory.isFull[i] = false;
                 break;
             }

@@ -1,13 +1,13 @@
 ﻿<Properties StartupConfiguration="{FC4B63FA-8BFA-7F2D-31D0-5E2C1228F553}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GameScript/HumanFightBehavior.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GameScript/Inventory.cs">
     <Files>
       <File FileName="Assets/Scripts/GameScript/MainScript.cs" Line="27" Column="9" />
       <File FileName="Assets/Scripts/GameScript/Trigger.cs" />
       <File FileName="Assets/Scripts/GameScript/Pickup.cs" />
-      <File FileName="Assets/Scripts/GameScript/HumanFightBehavior.cs" Line="46" Column="39" />
-      <File FileName="Assets/Scripts/GameScript/Inventory.cs" />
-      <File FileName="Assets/Scripts/GameScript/HumanComponent.cs" Line="64" Column="28" />
-      <File FileName="Assets/Scripts/Behavior/AgentComponent.cs" Line="6" Column="1" />
+      <File FileName="Assets/Scripts/GameScript/HumanFightBehavior.cs" Line="57" Column="4" />
+      <File FileName="Assets/Scripts/GameScript/Inventory.cs" Line="17" Column="54" />
+      <File FileName="Assets/Scripts/GameScript/HumanComponent.cs" />
+      <File FileName="Assets/Scripts/Behavior/AgentComponent.cs" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
