@@ -41,7 +41,7 @@ public class PostureEditor : Editor {
         _expression = EditorGUILayout.IntPopup("Expression: ", _expression, _expressionNames, _expressionInds);
         //WriteToFile
         if (GUILayout.Button("RecordPosture", GUILayout.ExpandWidth(false))) {
-            StreamWriter sw = new StreamWriter(_expressionNames[_expression] + "Posture.txt");
+            StreamWriter sw = new StreamWriter("postures/"+_expressionNames[_expression] + "Posture.txt");
 
             sw.WriteLine(_postureAnimator.Spine.localRotation.x + "\t" + _postureAnimator.Spine.localRotation.y + "\t" + _postureAnimator.Spine.localRotation.z + "\t" + _postureAnimator.Spine.localRotation.w);
             sw.WriteLine(_postureAnimator.Spine1.localRotation.x + "\t" + _postureAnimator.Spine1.localRotation.y + "\t" + _postureAnimator.Spine1.localRotation.z + "\t" + _postureAnimator.Spine1.localRotation.w);
@@ -58,7 +58,7 @@ public class PostureEditor : Editor {
         }
 
         if (GUILayout.Button("LoadPosture", GUILayout.ExpandWidth(false))) {
-            string[] content = File.ReadAllLines(_expressionNames[_expression] + "Posture.txt");
+            string[] content = File.ReadAllLines("postures/" + _expressionNames[_expression] + "Posture.txt");
             
                 string[] tokens = content[0].Split('\t');
                 _postureAnimator.Spine.localRotation = new Quaternion(float.Parse(tokens[0]), float.Parse(tokens[1]), float.Parse(tokens[2]), float.Parse(tokens[3]));

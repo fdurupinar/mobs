@@ -73,10 +73,10 @@ public class AnimationSelector : MonoBehaviour {
         AvgDesiredVel  = Vector3.zero;
 	    CumDesiredVel.Clear();
 
-        _navMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        _navMeshAgent = transform.GetComponent<UnityEngine.AI.NavMeshAgent>();
         _agent = GetComponent<AgentComponent>();
         _affect = GetComponent<AffectComponent>();
-        _animator = GetComponent<Animator>();
+        _animator = transform.GetComponent<Animator>();
 
         _animator.Play("BTMoveForward", 0); //default animation
 

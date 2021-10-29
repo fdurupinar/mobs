@@ -35,7 +35,8 @@ public class PostureAnimator : MonoBehaviour {
     public void Restart() {
         
         //Attach bones automatically
-        foreach (Transform child in transform) {
+
+        foreach (Transform child in transform.parent) {
             AssignBones(child);
         }
         
@@ -67,7 +68,9 @@ public class PostureAnimator : MonoBehaviour {
 
     public void ReadAngles() {
         for(int i = 0; i < 5; i++) {
-            string[] content = File.ReadAllLines(GetComponent<AffectComponent>().EkmanStr[i] + "Posture.txt");
+            string fileName = "postures/" + GetComponent<AffectComponent>().EkmanStr[i] + "Posture.txt";
+            string[] content = File.ReadAllLines(fileName);
+   
             for (int j = 0; j < content.Length; j++) {
                 string[] tokens = content[j].Split('\t');
                 BodyAngle[i][j] = new Quaternion(float.Parse(tokens[0]), float.Parse(tokens[1]), float.Parse(tokens[2]), float.Parse(tokens[3]));

@@ -73,7 +73,7 @@ public class AgentComponent: MonoBehaviour, GeneralStateComponent {
         _initialPos = transform.position;
         
         //Set collider size :WARNING: Temporary
-        SphereCollider col = (SphereCollider)this.GetComponent<Collider>();
+        SphereCollider col = this.GetComponent<SphereCollider>();
         col.radius = 2f; //to test escapes and ascribe --normally 4f
 
         _visibilityDist = col.radius; //* 2f;
@@ -116,9 +116,9 @@ public class AgentComponent: MonoBehaviour, GeneralStateComponent {
     }
 
 	public void Restart() {      
-        GetComponent<UnityEngine.AI.NavMeshAgent>().speed = WalkingSpeed; //maximum speed
-        GetComponent<UnityEngine.AI.NavMeshAgent>().angularSpeed = 360;
-        GetComponent<UnityEngine.AI.NavMeshAgent>().updatePosition = false; //for resetting the position
+        _navMeshAgent.speed = WalkingSpeed; //maximum speed
+        _navMeshAgent.angularSpeed = 360;
+        _navMeshAgent.updatePosition = false; //for resetting the position
         GetComponent<PersonalityMapper>().PersonalityToSteering(); //update steering parameters in navmesh according to Personality
         transform.position = _initialPos;
         Damage = 0f;

@@ -36,7 +36,7 @@ public class PoliceBehavior : MonoBehaviour {
         //_sT = transform.Find("Hips/Spine/Spine1/Spine2/LeftShoulder/LeftArm/LeftForeArm/LeftHand");
         _nT = transform.Find("Hips/Spine/Spine1/Spine2/RightShoulder/RightArm/RightForeArm/RightHand/RightHandRing1");
         _sT = transform.Find("Hips/Spine/Spine1/Spine2/RightShoulder/RightArm/RightForeArm/RightHand/RightHandRing1");
-	    _navMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+	    _navMeshAgent = transform.GetComponent<UnityEngine.AI.NavMeshAgent>();
 
 	    _navMeshAgent.radius = 0.4f;
 		

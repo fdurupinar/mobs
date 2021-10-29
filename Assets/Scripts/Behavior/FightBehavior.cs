@@ -16,6 +16,7 @@ public class FightBehavior : MonoBehaviour {
     public List<GameObject> Watchers = new List<GameObject>();
     public bool IsOver { get; set; }
     private AnimationSelector _animationSelector;
+    UnityEngine.AI.NavMeshAgent _navMeshAgent;
 
     public void Init(GameObject o) {
         _appraisal = GetComponent<Appraisal>();
@@ -26,10 +27,10 @@ public class FightBehavior : MonoBehaviour {
         _opponentComponent = Opponent.GetComponent<GeneralStateComponent>();
         _animationSelector = GetComponent<AnimationSelector>();
         _animationSelector.SelectAction("");
-        GetComponent<UnityEngine.AI.NavMeshAgent>().updateRotation = false; //rotation is updated according to opponent's direction
+        _navMeshAgent.updateRotation = false; //rotation is updated according to opponent's direction
     }
 	
-    UnityEngine.AI.NavMeshAgent _navMeshAgent;
+
 
     public FightBehavior() {
         IsOver = false;
@@ -154,16 +155,16 @@ public class FightBehavior : MonoBehaviour {
 	public void FinishFight() {
         if (!_agentComponent.IsFallen) {
             //_navMeshAgent.Resume();
-            GetComponent<UnityEngine.AI.NavMeshAgent>().isStopped = false;
-            GetComponent<UnityEngine.AI.NavMeshAgent>().updatePosition = true; //rotation is updated by navmeshagent
-            GetComponent<UnityEngine.AI.NavMeshAgent>().updateRotation = true; //rotation is updated by navmeshagent
+            _navMeshAgent.isStopped = false;
+            _navMeshAgent.updatePosition = true; //rotation is updated by navmeshagent
+            _navMeshAgent.updateRotation = true; //rotation is updated by navmeshagent
         }
 
         foreach (GameObject c in Watchers) {
             UpdateAppraisalStatusOfOther(c);
             c.GetComponent<AgentComponent>().IsWatchingFight = false;
             //c.GetComponent<UnityEngine.AI.NavMeshAgent>().Resume();
-            c.GetComponent<UnityEngine.AI.NavMeshAgent>().isStopped = false;
+            c.transform.GetComponent<UnityEngine.AI.NavMeshAgent>().isStopped = false;
 
         }
 

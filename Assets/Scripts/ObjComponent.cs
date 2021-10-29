@@ -25,9 +25,7 @@ public class ObjComponent : MonoBehaviour {
         _collidingAgents = new ArrayList();
 
 
-        //if (GameObject.Find("EZReplayManager"))
-            //this.gameObject.AddComponent<Object2Record>();
-
+   
     }
 
     private void Update()

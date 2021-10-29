@@ -108,41 +108,7 @@ public class GUIHandler : MonoBehaviour {
 	void Update() {
        
         if (Input.GetMouseButtonDown(0)) {
-         /*   GameObject crowd = GameObject.Find("Crowd");
-            //Picking an agent is a problem because of the large collider volume that it occupies
-            //Shrink its collider temporarily
-            foreach (Transform group in crowd.transform) {
-                foreach (Transform agent in group) {
-                    SphereCollider col = (SphereCollider) agent.collider;
-                    col.radius = 1.2f;
-
-                }
-            }
-            if (Camera.main != null) {
-                
-                //It selects the wrong agent most of the time
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                Physics.Raycast(ray, out _hit);
-                if (_hit.collider && _hit.collider.CompareTag("Player")) {
-                    GameObject.Find("Arrow").GetComponent<ArrowBehavior>().FollowedAgent = _hit.collider.gameObject;
-                    //Record that player
-                    GameObject.Find("Arrow").GetComponent<ArrowBehavior>().RecordSignal = true;
-                }
-
-            }
-
-            //Set collider back to original size
-            foreach (Transform group in crowd.transform) {
-                foreach (Transform agent in group) {
-                    SphereCollider col = (SphereCollider)agent.collider;
-                    col.radius = 4f;
-
-                }
-            }
-
-          
-            */
-
+       
             if (Input.GetKey("e")) {
                 if (Camera.main != null) {
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

@@ -93,6 +93,34 @@ public class ShopperBehavior : MonoBehaviour {
         }
 
         if (!_leftHand) {
+            _leftHand = transform.Find("mixamorig8:Hips/mixamorig8:Spine/mixamorig8:Spine1/mixamorig8:Spine2/mixamorig8:LeftShoulder/mixamorig8:LeftArm/mixamorig8:LeftForeArm/mixamorig8:LeftHand/mixamorig8:LeftHandIndex1");
+            _rightHand = transform.Find("mixamorig8:Hips/mixamorig8:Spine/mixamorig8:Spine1/mixamorig8:Spine2/mixamorig8:RightShoulder/mixamorig8:RightArm/mixamorig8:RightForeArm/mixamorig8:RightHand/mixamorig8:RightHandIndex1");
+
+        }
+
+        if (!_leftHand) {
+            _leftHand = transform.Find("mixamorig9:Hips/mixamorig9:Spine/mixamorig9:Spine1/mixamorig9:Spine2/mixamorig9:LeftShoulder/mixamorig9:LeftArm/mixamorig9:LeftForeArm/mixamorig9:LeftHand/mixamorig9:LeftHandIndex1");
+            _rightHand = transform.Find("mixamorig9:Hips/mixamorig9:Spine/mixamorig9:Spine1/mixamorig9:Spine2/mixamorig9:RightShoulder/mixamorig9:RightArm/mixamorig9:RightForeArm/mixamorig9:RightHand/mixamorig9:RightHandIndex1");
+
+        }
+        if (!_leftHand) {
+            _leftHand = transform.Find("mixamorig10:Hips/mixamorig10:Spine/mixamorig10:Spine1/mixamorig10:Spine2/mixamorig10:LeftShoulder/mixamorig10:LeftArm/mixamorig10:LeftForeArm/mixamorig10:LeftHand/mixamorig10:LeftHandIndex1");
+            _rightHand = transform.Find("mixamorig10:Hips/mixamorig10:Spine/mixamorig10:Spine1/mixamorig10:Spine2/mixamorig10:RightShoulder/mixamorig10:RightArm/mixamorig10:RightForeArm/mixamorig10:RightHand/mixamorig10:RightHandIndex1");
+
+        }
+        if (!_leftHand) {
+            _leftHand = transform.Find("mixamorig11:Hips/mixamorig11:Spine/mixamorig11:Spine1/mixamorig11:Spine2/mixamorig11:LeftShoulder/mixamorig11:LeftArm/mixamorig11:LeftForeArm/mixamorig11:LeftHand/mixamorig11:LeftHandIndex1");
+            _rightHand = transform.Find("mixamorig11:Hips/mixamorig11:Spine/mixamorig11:Spine1/mixamorig11:Spine2/mixamorig11:RightShoulder/mixamorig11:RightArm/mixamorig11:RightForeArm/mixamorig11:RightHand/mixamorig11:RightHandIndex1");
+
+        }
+
+        if (!_leftHand) {
+            _leftHand = transform.Find("mixamorig4:Hips/mixamorig4:Spine/mixamorig4:Spine1/mixamorig4:Spine2/mixamorig4:LeftShoulder/mixamorig4:LeftArm/mixamorig4:LeftForeArm/mixamorig4:LeftHand/mixamorig4:LeftHandIndex1");
+            _rightHand = transform.Find("mixamorig4:Hips/mixamorig4:Spine/mixamorig4:Spine1/mixamorig4:Spine2/mixamorig4:RightShoulder/mixamorig4:RightArm/mixamorig4:RightForeArm/mixamorig4:RightHand/mixamorig4:RightHandIndex1");
+
+        }
+
+        if (!_leftHand) {
             _leftHand = transform.Find("Hips/Spine/Spine1/Spine2/Spine3/Spine4/LeftShoulder/LeftArm/LeftForeArm/LeftHand/LeftHandIndex1");
             _rightHand = transform.Find("Hips/Spine/Spine1/Spine2/Spine3/Spine4/RightShoulder/RightArm/RightForeArm/RightHand/RightHandIndex1");
         }
@@ -267,7 +295,7 @@ public class ShopperBehavior : MonoBehaviour {
                     // if the object is too crowded and I am not the closest person wait in this state and I am not hopeful
                     if (_affectComponent.Emotion[(int)EType.Hope] < 0.3f && obj.GetComponent<ObjComponent>().Density > 20 && obj.GetComponent<ObjComponent>().ClosestAgent != this.gameObject) {
                         _agentComponent.LookAt(obj.transform.position, 0.01f); //just look at the object
-                        GetComponent<UnityEngine.AI.NavMeshAgent>().updateRotation = true; 
+                        _navmeshAgent.updateRotation = true; 
                         continue;
                     }
 
@@ -355,8 +383,8 @@ public class ShopperBehavior : MonoBehaviour {
                     }
                     else //it is achieved
                         _agentComponent.LookAt(_desiredObj.GetComponent<ObjComponent>().AchievingAgent.transform.position, 0.01f);
-                    
-                    GetComponent<UnityEngine.AI.NavMeshAgent>().updateRotation = true;
+
+                    _navmeshAgent.updateRotation = true;
                     _agentComponent.StartedWaiting = false;
                     if (_acquiredObjCnt >= _desiredObjCnt) {
 
