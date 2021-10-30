@@ -946,7 +946,7 @@ GameObject:
   - component: {fileID: 1317992154865434933}
   - component: {fileID: 1317992154865434938}
   m_Layer: 0
-  m_Name: carl
+  m_Name: Carl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1047,7 +1047,7 @@ Rigidbody:
   m_GameObject: {fileID: 2200882737408949350}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 1000
+  m_Drag: 100
   m_AngularDrag: 1000
   m_UseGravity: 1
   m_IsKinematic: 0
