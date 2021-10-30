@@ -1785,7 +1785,7 @@ GameObject:
   - component: {fileID: 5003697391033510354}
   m_Layer: 0
   m_Name: Roth
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
