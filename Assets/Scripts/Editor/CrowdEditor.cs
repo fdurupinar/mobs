@@ -33,7 +33,7 @@ public class CrowdEditor : EditorWindow {
         
         agentCnt = EditorGUILayout.IntField("Agent Count", agentCnt, GUILayout.ExpandWidth(true));
 
-        agentCnt = 27; //default value
+        agentCnt = 30; //default value
 
 
         GUILayout.Label("Group region");
