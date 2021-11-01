@@ -12,4 +12,7 @@ public interface GeneralStateComponent {
     public void AddDamage(float amount);
     public void Heal();
     public bool IsShopper();
+
+    public IEnumerator WaitAWhile(int seconds);
+    
 }

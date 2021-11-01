@@ -423,9 +423,7 @@ public class ShopperBehavior : MonoBehaviour {
 
                     }
                     else
-                        State = (int)ShoppingState.GoingToObject; //go to another object
-                        
-                   
+                        State = (int)ShoppingState.GoingToObject; //go to another object                        
                         
                     }
 
@@ -500,14 +498,6 @@ public class ShopperBehavior : MonoBehaviour {
     
     void InitAppraisalStatus() {
 
-/*        _appraisal.AddGoal("sales", _affectComponent.EmotionWeight[(int)EType.Disappointment], AppDef.Displeased, AppDef.ConsequenceForSelf, AppDef.ProspectIrrelevant);
-        for (int i = 0; i < _desiredObjCnt; i++) {
-            _appraisal.AddGoal("sales", _affectComponent.EmotionWeight[(int)EType.Hope] / _desiredObjCnt, AppDef.Pleased, AppDef.ConsequenceForSelf, AppDef.ProspectRelevant, AppDef.Unconfirmed);
-            _appraisal.AddGoal("sales", _affectComponent.EmotionWeight[(int)EType.Fear] / _desiredObjCnt, AppDef.Displeased, AppDef.ConsequenceForSelf, AppDef.ProspectRelevant, AppDef.Unconfirmed);
-        }
-
-        _appraisal.AddAttitude(null, _affectComponent.EmotionWeight[(int)EType.Love], AppDef.Liking); //General liking
-        */
         
         if (_affectComponent.Personality[(int)OCEAN.N] > 0.5f)  //if neurotic feel distress about the crowded scene
             _appraisal.AddGoal("sales", 0.25f, AppDef.Displeased, AppDef.ConsequenceForSelf, AppDef.ProspectIrrelevant);
@@ -536,116 +526,7 @@ public class ShopperBehavior : MonoBehaviour {
         _appraisal.AddAttitude(null, 0.2f, AppDef.Liking); //General liking
         
     }
-    /*
-    void UpdateAppraisalStatus() {
-        if (State == (int)ShoppingState.PickingUpObject) {
-            if (_desiredObj != null && _desiredObj.GetComponent<ObjComponent>().Achieved && _desiredObj.GetComponent<ObjComponent>().AchievingAgent != this.gameObject) { //someone else achieved it just when i was trying to get it                
-                //Change hope to disappointment for 1 object
-                float wt = _appraisal.RemoveGoal("sales", AppDef.Pleased, AppDef.ConsequenceForSelf, AppDef.ProspectRelevant, AppDef.Unconfirmed);
-                if (wt != 0) {
-                    _appraisal.AddGoal("sales", _affectComponent.EmotionWeight[(int)EType.Disappointment], AppDef.Pleased, AppDef.ConsequenceForSelf, AppDef.ProspectRelevant, AppDef.Disconfirmed); //slightly higher than hope
-                    //Resentment towards other shoppers
-                    _appraisal.AddGoal("sales", _affectComponent.EmotionWeight[(int)EType.Resentment], AppDef.Displeased, AppDef.ConsequenceForOther, transform.parent.gameObject, AppDef.DesirableForOther);
-                    //High disapproval towards that specific agent who achieved my object before me                   
-                    _appraisal.AddStandard(_affectComponent.EmotionWeight[(int)EType.Reproach], AppDef.Disapproving, AppDef.FocusingOnOther, _desiredObj.GetComponent<ObjComponent>().AchievingAgent); //Causes reproach
-
-                }
-
-                //Change fear to fearsconfirmed for 1 object
-                wt = _appraisal.RemoveGoal("sales", AppDef.Displeased, AppDef.ConsequenceForSelf, AppDef.ProspectRelevant, AppDef.Unconfirmed);
-                if (wt != 0)
-                    _appraisal.AddGoal("sales", _affectComponent.EmotionWeight[(int)EType.FearsConfirmed], AppDef.Displeased, AppDef.ConsequenceForSelf, AppDef.ProspectRelevant, AppDef.Confirmed);
-            }
-
-            else {
-                //I achieved                
-                //Change hope to satisfaction                  
-                float wt = _appraisal.RemoveGoal("sales", AppDef.Pleased, AppDef.ConsequenceForSelf, AppDef.ProspectRelevant, AppDef.Unconfirmed);
-                if (wt != 0) {
-                    _appraisal.AddGoal("sales", _affectComponent.EmotionWeight[(int)EType.Satisfaction], AppDef.Pleased, AppDef.ConsequenceForSelf, AppDef.ProspectRelevant, AppDef.Confirmed);
-                    //If neurotic, gloating towards other shoppers
-                  //  if (_affectComponent.Personality[(int)OCEAN.A] < 0f)
-                    _appraisal.AddGoal("sales", _affectComponent.EmotionWeight[(int)EType.Gloating], AppDef.Pleased, AppDef.ConsequenceForOther, transform.parent.gameObject, AppDef.UndesirableForOther);
-                }
-
-                //Change fear to relief
-                wt = _appraisal.RemoveGoal("sales", AppDef.Displeased, AppDef.ConsequenceForSelf, AppDef.ProspectRelevant, AppDef.Unconfirmed);
-                if (wt != 0)
-                    _appraisal.AddGoal("sales", _affectComponent.EmotionWeight[(int)EType.Relief], AppDef.Displeased, AppDef.ConsequenceForSelf, AppDef.ProspectRelevant, AppDef.Disconfirmed);
-            }
-
-        }
-
-        else if (State == (int)ShoppingState.GoingToObject) {
-            //if someone else took my desired object
-            if (IsDesiredObjectMissed()) {
-                bool exists = _appraisal.DoesStandardExist(_desiredObj.GetComponent<ObjComponent>().AchievingAgent, AppDef.Disapproving);
-              //  if (!exists && _affectComponent.Personality[(int)OCEAN.A] < 0f) //if disagreeable add disapproval  towards that specific agent who achieved my object before me  
-                _appraisal.AddStandard(_affectComponent.EmotionWeight[(int)EType.Reproach], AppDef.Disapproving, AppDef.FocusingOnOther, _desiredObj.GetComponent<ObjComponent>().AchievingAgent); //Causes reproach
-
-            }
-        }
-
-        else if (_acquiredObjCnt >= _desiredObjCnt) {
-            //Change hope to satisfaction                  
-            float wt = _appraisal.RemoveGoal("sales", AppDef.Pleased, AppDef.ConsequenceForSelf, AppDef.ProspectRelevant, AppDef.Unconfirmed);
-            if (wt != 0) {
-                _appraisal.AddGoal("sales",_affectComponent.EmotionWeight[(int)EType.Satisfaction], AppDef.Pleased, AppDef.ConsequenceForSelf, AppDef.ProspectRelevant, AppDef.Confirmed);
-                //If neurotic, gloating towards other shoppers
-             //   if (_affectComponent.Personality[(int)OCEAN.N] > 0f)
-                _appraisal.AddGoal("sales", _affectComponent.EmotionWeight[(int)EType.Gloating], AppDef.Pleased, AppDef.ConsequenceForOther, transform.parent.gameObject, AppDef.UndesirableForOther);
-            }
-
-            //Change fear to relief
-
-            wt = _appraisal.RemoveGoal("sales", AppDef.Displeased, AppDef.ConsequenceForSelf, AppDef.ProspectRelevant, AppDef.Unconfirmed);
-            if (wt != 0)
-                _appraisal.AddGoal("sales", _affectComponent.EmotionWeight[(int)EType.Relief], AppDef.Displeased, AppDef.ConsequenceForSelf, AppDef.ProspectRelevant, AppDef.Disconfirmed);
-
-
-        }
-        else {
-
-            if (_allConsumed) { // all the objects in the store are consumed
-
-                //Change hope to disappointment
-                float wt = _appraisal.RemoveGoal("sales", AppDef.Pleased, AppDef.ConsequenceForSelf, AppDef.ProspectRelevant, AppDef.Unconfirmed);
-                if (wt != 0) {
-                    _appraisal.AddGoal("sales", _affectComponent.EmotionWeight[(int)EType.Disappointment], AppDef.Pleased, AppDef.ConsequenceForSelf, AppDef.ProspectRelevant, AppDef.Disconfirmed);
-                    //Resentment towards other shoppers
-                    _appraisal.AddGoal("sales", _affectComponent.EmotionWeight[(int)EType.Resentment], AppDef.Displeased, AppDef.ConsequenceForOther, transform.parent.gameObject, AppDef.DesirableForOther);
-                }
-
-                //Change fear to fearsconfirmed
-                wt = _appraisal.RemoveGoal("sales", AppDef.Displeased, AppDef.ConsequenceForSelf, AppDef.ProspectRelevant, AppDef.Unconfirmed);
-                if (wt != 0)
-                    _appraisal.AddGoal("sales", _affectComponent.EmotionWeight[(int)EType.FearsConfirmed], AppDef.Displeased, AppDef.ConsequenceForSelf, AppDef.ProspectRelevant, AppDef.Confirmed);
-
-
-                //Add disapproval to the store for not having any more\
-                if (!_appraisal.DoesStandardExist(_cashier, AppDef.Disapproving))
-                    _appraisal.AddStandard(_affectComponent.EmotionWeight[(int)EType.Reproach], AppDef.Disapproving, AppDef.FocusingOnOther, _cashier); //Causes reproach
-            }
-            else if (State == (int)ShoppingState.ShelfChanging) {
-
-                //Decrease hope
-                float wt = _appraisal.RemoveGoal("sales", AppDef.Pleased, AppDef.ConsequenceForSelf, AppDef.ProspectRelevant, AppDef.Unconfirmed);
-                if (wt > 0.001f) {
-                    _appraisal.AddGoal("sales", wt * 3f / 4f, AppDef.Pleased, AppDef.ConsequenceForSelf, AppDef.ProspectRelevant, AppDef.Unconfirmed); //less hope                    
-                    //Resentment towards other shoppers
-                    _appraisal.AddGoal("sales", _affectComponent.EmotionWeight[(int)EType.Resentment], AppDef.Displeased, AppDef.ConsequenceForOther, transform.parent.gameObject, AppDef.DesirableForOther);
-                }
-
-                //Increase fear
-                wt = _appraisal.RemoveGoal("sales", AppDef.Displeased, AppDef.ConsequenceForSelf, AppDef.ProspectRelevant, AppDef.Unconfirmed);
-                if (wt != 0)
-                    _appraisal.AddGoal("sales", wt + 0.01f, AppDef.Displeased, AppDef.ConsequenceForSelf, AppDef.ProspectRelevant, AppDef.Unconfirmed);
-
-            }
-
-        }
-    }
-     */
+    
     
     void UpdateAppraisalStatus() {
         if (State == (int)ShoppingState.PickingUpObject) {

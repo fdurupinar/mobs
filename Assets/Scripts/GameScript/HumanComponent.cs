@@ -7,6 +7,9 @@ public class HumanComponent : MonoBehaviour, GeneralStateComponent{
     public float TimeLastFight = 0f;
     public bool isFighting = false;
     public bool IsFightStarter = false;
+    public Vector3 HandPos; //for picking up objects
+    public bool StartedWaiting = false;
+    public bool FinishedWaiting = false;
 
     public void Restart() {
         Damage = 0f;
@@ -19,6 +22,16 @@ public class HumanComponent : MonoBehaviour, GeneralStateComponent{
             if (TimeSinceLastFight() > 10) //start healing after 10 seconds
                 Heal();
         }
+    }
+
+    public IEnumerator WaitAWhile(int seconds) {
+        StartedWaiting = true;
+        FinishedWaiting = false;
+        yield return new WaitForSeconds(seconds);
+
+        FinishedWaiting = true;
+
+        //Dont't forget to set started waiting to false before state change
     }
 
     public bool IsFighting() {

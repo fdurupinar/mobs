@@ -56,7 +56,6 @@
     <Compile Include="Assets/Scripts/Affect/Appraisal.cs" />
     <Compile Include="Assets/Scripts/Camera/MoveTarget.cs" />
     <Compile Include="Assets/Scripts/Behavior/ZoneComponent.cs" />
-    <Compile Include="Assets/Scripts/GameScript/Pickup.cs" />
     <Compile Include="Assets/Scripts/Behavior/FightBehavior.cs" />
     <Compile Include="Assets/Scripts/Behavior/ProtesterBehavior.cs" />
     <Compile Include="Assets/Scripts/GroupBuilder.cs" />
@@ -95,6 +94,7 @@
     <Compile Include="Assets/Scripts/ObjectLabel.cs" />
     <Compile Include="Assets/Scripts/Camera/CameraControl3dsMaxStyle.cs" />
     <Compile Include="Assets/Scripts/ShelfComponent.cs" />
+    <Compile Include="Assets/HumanShoppingBehavior.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
