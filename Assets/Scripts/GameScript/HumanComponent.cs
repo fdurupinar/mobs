@@ -11,6 +11,12 @@ public class HumanComponent : MonoBehaviour, GeneralStateComponent{
     public bool StartedWaiting = false;
     public bool FinishedWaiting = false;
 
+
+    void Start() {
+        SphereCollider col = this.GetComponent<SphereCollider>();
+        col.radius = 0.5f; 
+    }
+
     public void Restart() {
         Damage = 0f;
         if(IsFighting()) {

@@ -10,6 +10,7 @@ public class HumanShoppingBehavior : MonoBehaviour
     Animator _animator;
 
     HumanComponent _humanComponent;
+    List<Collider> _ipadColliders;
 
     Transform _desiredObj;
     // Start is called before the first frame update
@@ -19,7 +20,7 @@ public class HumanShoppingBehavior : MonoBehaviour
         CurrentObjs.transform.parent = this.transform;
         _animator = GetComponent<Animator>();
 
-
+        _ipadColliders = new List<Collider>();
         _humanComponent = GetComponent<HumanComponent>();
  
         if (!_leftHand) {
@@ -36,29 +37,45 @@ public class HumanShoppingBehavior : MonoBehaviour
     void Update()
     {
 
+        if (Input.GetKey(KeyCode.X)) {
+            float minDist = 10000;
+            foreach (Collider col in _ipadColliders) {
+				if (!col.GetComponent<ObjComponent>().Achieved) { 
+                float dist = Vector3.Distance(col.transform.position, transform.position);
+                    if (dist < minDist) {
+                        minDist = dist;
+                        _desiredObj = col.transform;
+                    }
+
+                }
+            }
+        }
+
         //human is inside the object's trigger zone
         if (_desiredObj) {
-            Debug.Log(_desiredObj);
+
 
 			if (_humanComponent.StartedWaiting == false) {
 
 				GetComponent<Animator>().SetTrigger("PickUp");
                 
 
-                _humanComponent.HandPos = _desiredObj.position;
+                //_humanComponent.HandPos = _desiredObj.position;
 
                 _humanComponent.StartedWaiting = true;
 				_humanComponent.FinishedWaiting = false;
+
+                
                 
 
 			}
             else if (_humanComponent.StartedWaiting && !_humanComponent.FinishedWaiting && _desiredObj.GetComponent<ObjComponent>().Achieved == false) { //started waiting
 				if (_desiredObj.GetComponent<ObjComponent>().ClosestAgent.Equals(this.gameObject)) {
 					_desiredObj.position = _rightHand.position;
-
 				}
 
-				_humanComponent.HandPos = _desiredObj.position;//+ Vector3.up * 0.1f;
+				//_humanComponent.HandPos = _desiredObj.position;//+ Vector3.up * 0.1f;
+                
 
 			}
 
@@ -74,7 +91,9 @@ public class HumanShoppingBehavior : MonoBehaviour
 					_desiredObj.GetComponent<ObjComponent>().Achieved = true;
 
 
-				}
+
+                    _ipadColliders.Remove(_desiredObj.GetComponent<Collider>());
+                }
 
 
 				_humanComponent.StartedWaiting = false;
@@ -88,20 +107,20 @@ public class HumanShoppingBehavior : MonoBehaviour
 
 
 
+    //Not working properly for human
+	//void OnAnimatorIK(int layerIndex) {
 
-	void OnAnimatorIK(int layerIndex) {
-
-		if (_animator.GetCurrentAnimatorStateInfo(3).IsName("pickingUp")) {
-			float reach = _animator.GetFloat("RightHandReach");  //param is a curve           
-			_animator.SetIKPositionWeight(AvatarIKGoal.RightHand, reach);
-			_animator.SetIKPosition(AvatarIKGoal.RightHand, GetComponent<HumanComponent>().HandPos);
+	//	if (_animator.GetCurrentAnimatorStateInfo(3).IsName("pickingUp")) {
+	//		float reach = _animator.GetFloat("RightHandReach");  //param is a curve set in pickingUp animation           
+	//		_animator.SetIKPositionWeight(AvatarIKGoal.RightHand, reach);
+	//		_animator.SetIKPosition(AvatarIKGoal.RightHand, GetComponent<HumanComponent>().HandPos);
             
 
-        }
+ //       }
 
   
 
-	}
+	//}
 
 	//Called as an animation event when the picking up animation ends
 	void PickedObject() {
@@ -109,24 +128,39 @@ public class HumanShoppingBehavior : MonoBehaviour
      
     }
 
-    private void OnTriggerStay(Collider other) {
-
-        
-        if (other.CompareTag("Ipad") && Input.GetKey(KeyCode.X)) {
-            Debug.Log(other);
-
-            ObjComponent objComp = other.GetComponent<ObjComponent>();
-            
-            if (!objComp.Achieved) {
-
-                _desiredObj = other.transform;
-                
-
-            }             
-            
+	private void OnTriggerEnter(Collider other) {
+        //Assign the closest ipad
+        if (other.CompareTag("Ipad") ){
+            _ipadColliders.Add(other);
         }
 
     }
+    private void OnTriggerExit(Collider other) {
+        //Assign the closest ipad
+        if (_ipadColliders.Contains(other)) {
+            _ipadColliders.Remove(other);
+        }
+    }
+
+
+    //private void OnTriggerStay(Collider other) {
+
+        
+        //if (other.CompareTag("Ipad") && Input.GetKey(KeyCode.X)) {
+
+        //    Debug.Log(other);
+        //    ObjComponent objComp = other.GetComponent<ObjComponent>();
+            
+        //    if (!objComp.Achieved) {
+
+        //        _desiredObj = other.transform;
+                
+
+        //    }             
+            
+        //}
+
+    //}
 
 	//private void OnTriggerExit(Collider other) {
  //       if(_desiredObj == other.transform && _desiredObj.GetComponent<ObjComponent>().Achieved)

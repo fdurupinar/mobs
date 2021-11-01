@@ -4,6 +4,7 @@ using System.Collections;
 public class ObjComponent : MonoBehaviour {
     [SerializeField]
     private bool _achieved = false;
+
     
     public bool Achieved {
         get { return _achieved; }
