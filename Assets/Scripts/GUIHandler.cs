@@ -106,7 +106,8 @@ public class GUIHandler : MonoBehaviour {
 	
     
 	void Update() {
-       
+
+
         if (Input.GetMouseButtonDown(0)) {
        
             if (Input.GetKey("e")) {

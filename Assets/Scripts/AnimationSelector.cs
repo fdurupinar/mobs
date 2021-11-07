@@ -50,17 +50,13 @@ public class AnimationSelector : MonoBehaviour {
 
     void Awake() {
 
-
         Restart();
     }
 
-	void Start() {
-        
-       
+	void Start() {      
 
         AvgDesiredVel =  Vector3.zero;
 	    
-
 	    CumDesiredVel = new List<Vector3>();
 
 

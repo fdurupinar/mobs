@@ -19,6 +19,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private float m_StickToGroundForce;
         [SerializeField] private float m_GravityMultiplier;
         [SerializeField] private MouseLook m_MouseLook;
+        [SerializeField] private KeyboardLook m_KeyboardLook;
         [SerializeField] private bool m_UseFovKick;
         [SerializeField] private FOVKick m_FovKick = new FOVKick();
         [SerializeField] private bool m_UseHeadBob;
@@ -56,6 +57,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
+            m_KeyboardLook.Init(transform, m_Camera.transform);
         }
 
 
@@ -112,6 +114,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             if (m_CharacterController.isGrounded)
             {
+            
                 m_MoveDir.y = -m_StickToGroundForce;
 
                 if (m_Jump)
@@ -206,7 +209,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private void GetInput(out float speed)
         {
             // Read input
-            float horizontal = CrossPlatformInputManager.GetAxis("Horizontal");
+            //funda float horizontal = CrossPlatformInputManager.GetAxis("Horizontal");
             float vertical = CrossPlatformInputManager.GetAxis("Vertical");
 
             bool waswalking = m_IsWalking;
@@ -218,7 +221,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
 #endif
             // set the desired speed to be walking or running
             speed = m_IsWalking ? m_WalkSpeed : m_RunSpeed;
-            m_Input = new Vector2(horizontal, vertical);
+            //funda m_Input = new Vector2(horizontal, vertical);
+            m_Input = new Vector2(0, vertical);
 
             // normalize input if it exceeds 1 in combined length:
             if (m_Input.sqrMagnitude > 1)
@@ -238,8 +242,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void RotateView()
         {
-            m_MouseLook.LookRotation (transform, m_Camera.transform);
+            //funda m_MouseLook.LookRotation (transform, m_Camera.transform);
+            m_KeyboardLook.LookRotation(transform, m_Camera.transform);
         }
+
 
 
         private void OnControllerColliderHit(ControllerColliderHit hit)
@@ -271,7 +277,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
 			// Apply the push
 			body.velocity = pushDir * pushPower;
-   
+            
 
 
 		}

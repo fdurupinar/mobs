@@ -343,10 +343,12 @@ public class AgentComponent: MonoBehaviour, GeneralStateComponent {
         //List<IndexValuePair> lambdaList = new List<IndexValuePair>(); //indices of dominant emotions around us
         if (_affectComponent.ContagionMode) {
             foreach (GameObject c in CollidingAgents) {
-                    //Ensures that agents within a radius are considered
-                    if (!c.CompareTag("RealPlayer") && IsVisible(c, VisibilityAngle)) {
-                        //if c is in my visual cone and within a certain proximity                
-                        for (int eInd = 0; eInd < c.GetComponent<AffectComponent>().Emotion.Length; eInd++) {
+				//Ensures that agents within a radius are considered
+				//if (!c.CompareTag("RealPlayer") && IsVisible(c, VisibilityAngle)) {
+				if (c.CompareTag("Player") && IsVisible(c, VisibilityAngle)) {
+
+                //if c is in my visual cone and within a certain proximity                
+                for (int eInd = 0; eInd < c.GetComponent<AffectComponent>().Emotion.Length; eInd++) {
                             if (c.GetComponent<AffectComponent>().CanExpress(eInd)) {                  
                                 if (lambdaList.ContainsKey(eInd)) {
                                     lambdaList[eInd] += c.GetComponent<AffectComponent>().Emotion[eInd];

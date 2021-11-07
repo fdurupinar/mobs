@@ -9,7 +9,7 @@ public class HumanFightBehavior : MonoBehaviour
 	public GameObject Opponent;
 	public float BeginTime;
 	public float EndTime;
-	private Inventory inventory;
+	//private Inventory inventory;
 	//private Inventory oInventory;
 
 	public void Init(GameObject o) {
@@ -20,7 +20,7 @@ public class HumanFightBehavior : MonoBehaviour
     }
 
 	private void Start() {
-		inventory = GameObject.FindGameObjectWithTag("RealPlayer").GetComponent<Inventory>();
+		//inventory = GameObject.FindGameObjectWithTag("RealPlayer").GetComponent<Inventory>();
 		//oInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
 	}
 	void Update () { // grab products or lost products
@@ -29,12 +29,12 @@ public class HumanFightBehavior : MonoBehaviour
 			FinishFight();
 		}
 		else {
-		    if (humanComponent.IsWounded()) {
-				LostProduct();
-			}
-			if (opponentComponent.IsDead()) {
-				//GrabProduct();
-			}
+		 //   if (humanComponent.IsWounded()) {
+			//	LostProduct();
+			//}
+			//if (opponentComponent.IsDead()) {
+			//	//GrabProduct();
+			//}
 			
 			if (Input.GetKey(KeyCode.F)) { 
 				humanComponent.AddDamage(opponentComponent.IsFighting() ? 0.4f : 0f); // add damage to itself
@@ -45,29 +45,29 @@ public class HumanFightBehavior : MonoBehaviour
 		}
 	}
 
-	private void LostProduct() {
-		for (int i = inventory.slots.Length - 1; i >= 0; i--) {
-			if (inventory.isFull[i]) {
-				// inventory.slots[i].GetComponent<Image>().sprite = null;
-	 			// inventory.isFull[i] = false;
-	 			// break;
-			}
-		}
+	//private void LostProduct() {
+	//	for (int i = inventory.slots.Length - 1; i >= 0; i--) {
+	//		if (inventory.isFull[i]) {
+	//			// inventory.slots[i].GetComponent<Image>().sprite = null;
+	// 			// inventory.isFull[i] = false;
+	// 			// break;
+	//		}
+	//	}
 
-	}
+	//}
 
-	private void GrabProdcut() { // need modifying
-		for (int i = 0; i < inventory.slots.Length; i++) {
-			// if (inventory.isFull[i] == false) {
-			// 	Instantiate(itemButton, inventory.slots[i].transform, false);
-			// 	int idx = Random.Range(0,3);
-			// 	inventory.slots[i].GetComponent<Image>().sprite = inventory.sprites[idx];
-	 		//     inventory.isFull[i] = true;
-			// 	break;
-			// }
+	//private void GrabProdcut() { // need modifying
+	//	for (int i = 0; i < inventory.slots.Length; i++) {
+	//		// if (inventory.isFull[i] == false) {
+	//		// 	Instantiate(itemButton, inventory.slots[i].transform, false);
+	//		// 	int idx = Random.Range(0,3);
+	//		// 	inventory.slots[i].GetComponent<Image>().sprite = inventory.sprites[idx];
+	// 		//     inventory.isFull[i] = true;
+	//		// 	break;
+	//		// }
 			
-		}
-	}
+	//	}
+	//}
 
 	public void FinishFight() {
         opponentComponent.TimeLastFight = Time.time;

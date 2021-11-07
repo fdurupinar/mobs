@@ -13,8 +13,7 @@ public class HumanComponent : MonoBehaviour, GeneralStateComponent{
 
 
     void Start() {
-        SphereCollider col = this.GetComponent<SphereCollider>();
-        col.radius = 0.5f; 
+        
     }
 
     public void Restart() {
