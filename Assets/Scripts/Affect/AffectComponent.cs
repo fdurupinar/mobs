@@ -91,7 +91,7 @@ public class AffectComponent : MonoBehaviour {
     public Contagion[] LambdaE = new Contagion[22];
     
     private Vector3[] _pad = new Vector3[22];
-    private GUIHandler _guiHandler;
+    //private GUIHandler _guiHandler;
 
     public bool ContagionMode;
 
@@ -158,10 +158,10 @@ public class AffectComponent : MonoBehaviour {
         InitPad();
 
 
+        ContagionMode = true;
+        //_guiHandler = FindObjectOfType(typeof(GUIHandler)) as GUIHandler;
 
-        _guiHandler = FindObjectOfType(typeof(GUIHandler)) as GUIHandler;
-
-        ContagionMode = _guiHandler.ContagionMode;
+        //ContagionMode = _guiHandler.ContagionMode;
 
     }
 
