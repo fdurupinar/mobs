@@ -1,0 +1,40 @@
+﻿<Properties StartupConfiguration="{E3A2EAF7-4578-1C0E-7CC0-9EA1D3C296DF}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GUIHandler.cs">
+    <Files>
+      <File FileName="Assets/Scripts/Human/HumanAnimationSelector.cs" Line="58" Column="1" />
+      <File FileName="Assets/Scripts/Behavior/ShopperBehavior.cs" />
+      <File FileName="Assets/Scripts/Affect/AffectComponent.cs" Line="162" Column="40" />
+      <File FileName="Assets/Scripts/GUIHandler.cs" Line="78" Column="33" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="mobs" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="Affect" expanded="True" />
+                <Node name="Behavior" expanded="True" />
+                <Node name="Human" expanded="True" />
+                <Node name="GUIHandler.cs" selected="True" />
+              </Node>
+              <Node name="Standard Assets" expanded="True">
+                <Node name="Characters" expanded="True">
+                  <Node name="FirstPersonCharacter" expanded="True">
+                    <Node name="Scripts" expanded="True" />
+                  </Node>
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="86c63619-dc2a-4774-90b6-499c25d75997" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
