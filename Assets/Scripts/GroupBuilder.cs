@@ -31,7 +31,7 @@ public class GroupBuilder : MonoBehaviour {
 		_agents = new GameObject[_agentCnt];
         string[] charNames = {
 			        //"Carl", "Mia", "Alexis", "Carl 1", "Victoria","Michael", "Carl 2", "Carl 3", "Alexis 1", "Alexis 2"
-                    "Carl", "Mia 1", "Alexis", "Carl 1", "justin","Alexis 1", "Carl 2", "justin 1", "Alexis 2", "Carl 3", "justin 2", "Alexis 3", "justin 3" 
+                    "Carl", "Mia 1", "Alexis", "Carl 1", "justin","Alexis 1", "Carl 2", "justin 1", "Alexis 2", "Carl 3", "justin 2", "Alexis 3", "justin 3", "Megan" 
 			    };
         
         
