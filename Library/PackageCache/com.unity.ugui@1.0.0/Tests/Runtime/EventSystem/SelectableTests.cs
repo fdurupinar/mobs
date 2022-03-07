@@ -360,10 +360,14 @@ namespace UnityEngine.UI.Tests
         {
             selectable.InvokeOnSelect(null);
             Assert.True(selectable.isStateSelected);
+<<<<<<< HEAD
             selectable.InvokeOnPointerEnter(new PointerEventData(EventSystem.current)
             {
                 pointerEnter = selectable.gameObject
             });
+=======
+            selectable.InvokeOnPointerEnter(null);
+>>>>>>> 8368ab511148c3fac19a18c9f0ea38cfff9eada3
             Assert.True(selectable.isStateSelected);
         }
 
