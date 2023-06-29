@@ -20,12 +20,12 @@ public class GroupBuilderEditor:Editor{
 	float _maxStd = 1.0f;
 
 
-
-
 	
 	void OnEnable() {
 		 _groupBuilder = target as GroupBuilder;
-	    _groupBuilder.AssignAgents();
+		_groupBuilder.SetAgentCnt();
+		_groupBuilder.AssignAgents();
+
 	}
 	 
 	public override void OnInspectorGUI () {
@@ -86,12 +86,7 @@ public class GroupBuilderEditor:Editor{
             _groupBuilder.UpdateRegion(_sliderRectX, _sliderRectZ);
 
       
-		if(_groupBuilder.GetComponent<ZoneComponent>() != null && GUILayout.Button("Update protection zone", GUILayout.ExpandWidth(false))) {
-            EditorGUILayout.Separator();
-            EditorGUILayout.Separator();            
-            _groupBuilder.GetComponent<ZoneComponent>().ComputeProtectionZone();
-        }
-
+		
         EditorUtility.SetDirty(target);
 	}			 
 	

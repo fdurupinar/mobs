@@ -4,9 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Shelter
-  - Target
-  - Explosion
+  - ExitZone
+  - PaymentZone
+  - RealPlayer
+  - Ipad
+  - PaymentBubble
   layers:
   - Default
   - TransparentFX
@@ -14,14 +16,14 @@ TagManager:
   - 
   - Water
   - UI
+  - Agent
   - 
   - 
-  - StoreObject
-  - Laptop
-  - Analysis
-  - Target
-  - Shelter
-  - Explosion
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 

@@ -23,7 +23,9 @@ public enum EkmanType {
     Sad = 1,
     Angry = 2,
     Afraid = 3,
-    Neutral = 4
+    Neutral = 4,
+    Disgust = 5,
+    Shock = 6
 }
 
 public enum EmotionRange {
@@ -91,7 +93,7 @@ public class AffectComponent : MonoBehaviour {
     public Contagion[] LambdaE = new Contagion[22];
     
     private Vector3[] _pad = new Vector3[22];
-    private GUIHandler _guiHandler;
+    //private GUIHandler _guiHandler;
 
     public bool ContagionMode;
 
@@ -158,10 +160,10 @@ public class AffectComponent : MonoBehaviour {
         InitPad();
 
 
+        ContagionMode = true;
+        //_guiHandler = FindObjectOfType(typeof(GUIHandler)) as GUIHandler;
 
-        _guiHandler = FindObjectOfType(typeof(GUIHandler)) as GUIHandler;
-
-        ContagionMode = _guiHandler.ContagionMode;
+        //ContagionMode = _guiHandler.ContagionMode;
 
     }
 
@@ -205,9 +207,10 @@ public class AffectComponent : MonoBehaviour {
 
         int i;
         
-        const float pullPushSpeed = 1f;
-        const float decaySpeed = 0.001f;
-        Vector3 m2ec, ec2m, m2dm, ec2dm;
+        //const float pullPushSpeed = 1f;
+        //const float decaySpeed = 0.001f;
+        //Vector3 m2ec, ec2m, m2dm, ec2dm;
+        Vector3  m2dm;
 
         int activeEmotionCnt = 0;
         EmotionCenter = DefaultMood;
@@ -355,7 +358,7 @@ public class AffectComponent : MonoBehaviour {
     }
     
     public float GetExpressionValue() {
-        return Mood.magnitude;
+        return Mathf.Clamp(Mood.magnitude, 0, 1f);
     }
 
     public EmotionRange GetExpressionRange() {
@@ -434,24 +437,11 @@ public class AffectComponent : MonoBehaviour {
             c = new Color(1, 1, 1);
 
          return Color.Lerp(new Color(0.5f, 0.5f, 0.5f), c, Mood.magnitude);
-         
 
-       /* if (moodOctant == (int)MType.Exuberant || moodOctant == (int)MType.Docile || moodOctant == (int)MType.Dependent)
-            c = new Color(1, 1, 0);
-        else if (moodOctant == (int)MType.Disdainful || moodOctant == (int)MType.Bored) //sad
-            c = new Color(0, 0, 1);
-        else if (moodOctant == (int)MType.Anxious)
-            c = new Color(0, 1, 0);
-        else if (moodOctant == (int)MType.Hostile)
-            c = new Color(1, 0, 0);
-        else
-            c = new Color(1, 1, 1);
 
-         */   
-        Color expColor = Color.Lerp(Color.white,c, Mood.magnitude);
-         return expColor;
-            
-     }
+       
+
+    }
 
 
     public void UpdatePersonality(float[] persMean, float[] persStd) {
