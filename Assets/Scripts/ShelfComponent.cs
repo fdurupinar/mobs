@@ -5,33 +5,35 @@ public struct Shelf {  //shelves that hold the objects
     public Vector3 v1,v2,v3,v4;
 };
 
-public  class ShelfComponent :MonoBehaviour {
+public  class ShelfComponent:MonoBehaviour {
     
 
     public  Shelf[] Shelves;
+    float _halfShelfWidth = 1.5f;//0.55f;
+    float _halfShelfLength = 5.5f;
 
     void  Start() {
         Shelves = new Shelf[6]; //not actually shelves but the area in the middle of two shelves
         Transform sh = GameObject.Find("Shelf0").transform;
-        Shelves[0].v1 = new Vector3(sh.position.x - 1, 0, sh.position.z - 5.5f);
-        Shelves[0].v2 = new Vector3(sh.position.x, 0, sh.position.z - 5.5f);
-        Shelves[0].v3 = new Vector3(sh.position.x, 0, sh.position.z + 5.5f);
-        Shelves[0].v4 = new Vector3(sh.position.x - 1, 0, sh.position.z + 5.5f);
+        Shelves[0].v1 = new Vector3(sh.position.x - _halfShelfWidth, 0, sh.position.z - _halfShelfLength);
+        Shelves[0].v2 = new Vector3(sh.position.x, 0, sh.position.z - _halfShelfLength);
+        Shelves[0].v3 = new Vector3(sh.position.x, 0, sh.position.z + _halfShelfLength);
+        Shelves[0].v4 = new Vector3(sh.position.x - _halfShelfWidth, 0, sh.position.z + _halfShelfLength);
 
         for (int i = 1; i <= 4; i++) {
             Transform sh1 = GameObject.Find("Shelf" + (i - 1)).transform;
             Transform sh2 = GameObject.Find("Shelf" + (i)).transform;
-            Shelves[i].v1 = new Vector3(sh1.position.x + 1, 0, sh1.position.z - 5.5f);
-            Shelves[i].v2 = new Vector3(sh2.position.x - 1, 0, sh1.position.z - 5.5f);
-            Shelves[i].v3 = new Vector3(sh2.position.x - 1, 0, sh1.position.z + 5.5f);
-            Shelves[i].v4 = new Vector3(sh1.position.x + 1, 0, sh1.position.z + 5.5f);
+            Shelves[i].v1 = new Vector3(sh1.position.x + _halfShelfWidth, 0, sh1.position.z - _halfShelfLength);
+            Shelves[i].v2 = new Vector3(sh2.position.x - _halfShelfWidth, 0, sh1.position.z - _halfShelfLength);
+            Shelves[i].v3 = new Vector3(sh2.position.x - _halfShelfWidth, 0, sh1.position.z + _halfShelfLength);
+            Shelves[i].v4 = new Vector3(sh1.position.x + _halfShelfWidth, 0, sh1.position.z + _halfShelfLength);
         }
 
         sh = GameObject.Find("Shelf4").transform;
-        Shelves[5].v1 = new Vector3(sh.position.x, 0, sh.position.z - 5.5f);
-        Shelves[5].v2 = new Vector3(sh.position.x + 1, 0, sh.position.z - 5.5f);
-        Shelves[5].v3 = new Vector3(sh.position.x + 1, 0, sh.position.z + 5.5f);
-        Shelves[5].v4 = new Vector3(sh.position.x, 0, sh.position.z + 5.5f);
+        Shelves[5].v1 = new Vector3(sh.position.x, 0, sh.position.z - _halfShelfLength);
+        Shelves[5].v2 = new Vector3(sh.position.x + _halfShelfWidth, 0, sh.position.z - _halfShelfLength);
+        Shelves[5].v3 = new Vector3(sh.position.x + _halfShelfWidth, 0, sh.position.z + _halfShelfLength);
+        Shelves[5].v4 = new Vector3(sh.position.x, 0, sh.position.z + _halfShelfLength);
         
     }
 

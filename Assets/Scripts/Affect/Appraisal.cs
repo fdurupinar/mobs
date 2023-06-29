@@ -83,14 +83,10 @@ public class Appraisal : MonoBehaviour {
         Goals.Clear();
         Standards.Clear();
         Attitudes.Clear();
-        
     }
-
-    
 
     public float[] ComputeEventFactor() {
         int i;
-
 
         for (i = 0; i < _eventFactor.Length; i++)
             _eventFactor[i] = 0;

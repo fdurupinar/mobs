@@ -1,7 +1,26 @@
 using UnityEngine;
+using System.Runtime.InteropServices;
 using System.Collections;
+using System;
 
 public class CrowdManager : MonoBehaviour {
+    //[DllImport("__Internal")]
+    //private static extern void Hello();
+
+    //[DllImport("__Internal")]
+    //private static extern void HelloString(string str);
+
+    //[DllImport("__Internal")]
+    //private static extern void PrintFloatArray(float[] array, int size);
+
+    //[DllImport("__Internal")]
+    //private static extern int AddNumbers(int x, int y);
+
+    //[DllImport("__Internal")]
+    //private static extern string StringReturnValueFunction();
+
+    //[DllImport("__Internal")]
+    //private static extern void BindWebGLTexture(int texture);
 
 
     public void Restart() {
@@ -19,21 +38,12 @@ public class CrowdManager : MonoBehaviour {
         foreach (Appraisal a in appraisalComponents)
             a.Restart();
 				
-        ProtesterBehavior[] protesterComponents = FindObjectsOfType(typeof(ProtesterBehavior)) as ProtesterBehavior[];
-        foreach (ProtesterBehavior p in protesterComponents)
-            p.Restart();
-
-        PoliceBehavior[] policeComponents = FindObjectsOfType(typeof(PoliceBehavior)) as PoliceBehavior[];
-        foreach (PoliceBehavior p in policeComponents)
-            p.Restart();
 
         ShopperBehavior[] shopperComponents = FindObjectsOfType(typeof(ShopperBehavior)) as ShopperBehavior[];
         foreach (ShopperBehavior s in shopperComponents)
             s.Restart();
 
-        PassengerBehavior[] passengerComponents = FindObjectsOfType(typeof(PassengerBehavior)) as PassengerBehavior[];
-        foreach (PassengerBehavior p in passengerComponents)
-            p.Restart();
+  
 
         AudienceBehavior[] audienceComponents = FindObjectsOfType(typeof(AudienceBehavior)) as AudienceBehavior[];
         foreach (AudienceBehavior a in audienceComponents)
@@ -43,11 +53,27 @@ public class CrowdManager : MonoBehaviour {
         foreach (AnimationSelector a in animationComponents)
             a.Restart();
 
-        PostureAnimator[] postureComponents = FindObjectsOfType(typeof(PostureAnimator)) as PostureAnimator[];
-        foreach (PostureAnimator p in postureComponents)
-            p.Restart();
-
 
 
     }
+
+
+     void Start() {
+        //Hello();
+
+        //HelloString("This is a string.");
+
+        //float[] myArray = new float[10];
+        //PrintFloatArray(myArray, myArray.Length);
+
+        //int result = AddNumbers(5, 7);
+        //Debug.Log(result);
+
+        //Debug.Log(StringReturnValueFunction());
+
+        //var texture = new Texture2D(0, 0, TextureFormat.ARGB32, false);
+        //BindWebGLTexture(texture.GetNativeTextureID());
+    }
+
+
 }

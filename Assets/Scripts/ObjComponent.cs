@@ -2,8 +2,10 @@ using UnityEngine;
 using System.Collections;
 
 public class ObjComponent : MonoBehaviour {
+    [SerializeField]
     private bool _achieved = false;
 
+    
     public bool Achieved {
         get { return _achieved; }
         set { _achieved = value; }
@@ -25,9 +27,7 @@ public class ObjComponent : MonoBehaviour {
         _collidingAgents = new ArrayList();
 
 
-        //if (GameObject.Find("EZReplayManager"))
-            //this.gameObject.AddComponent<Object2Record>();
-
+   
     }
 
     private void Update()
@@ -41,7 +41,8 @@ public class ObjComponent : MonoBehaviour {
 
 /// Finds the agents around me
     void OnTriggerEnter(Collider collider) {
-        if (collider.gameObject.CompareTag("Player")) {
+        if (collider.gameObject.CompareTag("Player") || collider.gameObject.CompareTag("RealPlayer")) {
+          
             if (!_collidingAgents.Contains(collider)) {
                 _collidingAgents.Add(collider.gameObject);
              //   if(collider.gameObject.GetComponent<ShopperBehavior>().DeactiveObjs.Contains(this.gameObject) == false) //if agent sees this object, add it to the seen list
@@ -55,16 +56,20 @@ public class ObjComponent : MonoBehaviour {
                 if (dist < minDist) {
                     minDist = dist;
                     ClosestAgent = collider.gameObject;
+
                 }
             }
         }
+
     }
 
+
     void OnTriggerExit(Collider collider) {
-        if (collider.gameObject.CompareTag("Player")) {
+        if (collider.gameObject.CompareTag("Player")|| collider.gameObject.CompareTag("RealPlayer")) {
             _collidingAgents.Remove(collider.gameObject);
             UpdateClosestAgent();
         }
+        
     }
 
     void UpdateClosestAgent() {

@@ -1,4 +1,0 @@
-Assets/Aytek/Models/Materials/bark.mat
-Assets/EZReplayManager/extension/icons/close.png
-Assets/EZReplayManager/extension/icons/rewind.png
-Assets/Revision/MaleCharacterPack/Materials/Justin.mat
