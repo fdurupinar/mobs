@@ -122,6 +122,13 @@ public class HumanShoppingBehavior : MonoBehaviour {
                 float[] persStd = { 0.1f, 0.1f, 0.1f, 0.1f, 0.1f };
                 UpdatePersonalityAndBehavior(persMean, persStd);
             }
+            else {
+
+                float[] persMean = { 0f, 1f, -1f, 1f, -1f };
+                float[] persStd = { 0.1f, 0.1f, 0.1f, 0.1f, 0.1f };
+                UpdatePersonalityAndBehavior(persMean, persStd);
+
+            }
         }
 
         _ipadColliders = new List<Collider>();

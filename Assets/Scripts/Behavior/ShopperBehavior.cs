@@ -148,7 +148,7 @@ public class ShopperBehavior : MonoBehaviour
 
 
 
-		_navmeshAgent.speed += 0.6f; //faster than usual
+		//_navmeshAgent.speed += 0.6f; //faster than usual
 
 
 		CurrentObjs = new GameObject("AchievedObjects");
@@ -202,9 +202,9 @@ public class ShopperBehavior : MonoBehaviour
 			//Disapproved agents are the ones who achieve my desired object before me
 			foreach (GameObject c in _agentComponent.CollidingAgents)
 			{
-
+				
                 if(c.CompareTag("RealPlayer")) {
-                    if(!c.GetComponent<HumanComponent>().IsFighting() && _agentComponent.IsGoodToFight(c, 1f)) { //human not fighting yet and close to human
+                    if(!c.GetComponent<HumanComponent>().IsFighting() && _agentComponent.IsGoodToAttack(c, 1f)) { //human not fighting yet and close to human and is disapproving
 						if(c.GetComponent<HumanShoppingBehavior>().IsWorthFighting()) { //human has ipads
 							_agentComponent.StartFight(c, true);
 							c.GetComponent<HumanComponent>().StartFight(this.gameObject, false);
@@ -217,7 +217,7 @@ public class ShopperBehavior : MonoBehaviour
 					}
                 }
 
-				else if (c.GetComponent<ShopperBehavior>() != null && _agentComponent.IsGoodToFight(c, 5f)){
+				else if (c.GetComponent<ShopperBehavior>() != null && _agentComponent.IsGoodToAttack(c, 5f)){
 					_agentComponent.StartFight(c, true);
 					c.GetComponent<AgentComponent>().StartFight(this.gameObject, false);
 

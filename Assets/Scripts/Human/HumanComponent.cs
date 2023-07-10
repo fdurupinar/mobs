@@ -51,7 +51,7 @@ public class HumanComponent : MonoBehaviour, GeneralStateComponent
 			if(TimeSinceLastFight()>5f) { //don't start a fight immediately
 				foreach(GameObject c in CollidingAgents) {
 
-					if(c.CompareTag("Player") && IsVisible(c, VisibilityAngle) && c.GetComponent<AgentComponent>().IsGoodToFight(this.gameObject, 2f)) {
+					if(c.CompareTag("Player") && IsVisible(c, VisibilityAngle) && c.GetComponent<AgentComponent>().IsGoodToBeAttacked(this.gameObject, 2f)) {
 						StartFight(c, true);
 						c.GetComponent<AgentComponent>().StartFight(this.gameObject, false);
 					}

@@ -15,8 +15,8 @@ EditorBuildSettings:
     path: Assets/Scenes/UserPreStudySurvey.unity
     guid: 5d1679097771a4bd083f168e41f50fbe
   - enabled: 1
-    path: Assets/Scenes/UserPersonalitySurvey1.unity
-    guid: 8215412a2584c409cb86f57518a37b87
+    path: Assets/Scenes/UserPersonalitySurvey.unity
+    guid: bbd2be098f1064d8ab0fe6876053d54b
   - enabled: 1
     path: Assets/Scenes/Sales.unity
     guid: 3965a05aa2da7483fbb78342ef43a0b5
