@@ -24,6 +24,8 @@ public class PersonalityMapper: MonoBehaviour
 	    float minSpeed = 1.0f;// 1.0f;
 		navMeshAgent.speed = GetComponent<AgentComponent>().WalkingSpeed = ((0.5f* personality[(int)OCEAN.E] + 0.5f) * (maxSpeed - minSpeed) + minSpeed); //Adjusts current speed as well
 
+
+		
 		navMeshAgent.acceleration = 1f;
 
         //Waiting duration [11 21] frames

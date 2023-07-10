@@ -42,7 +42,7 @@ server = http.createServer(app);
 
 
 
-var dbName = 'mobsHostileAgentDB3';
+var dbName = 'mobsDocileHumanDB3';
 const wss = new WebSocket.Server({ server });
 
 

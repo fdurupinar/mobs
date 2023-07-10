@@ -19,7 +19,7 @@ public static class UserInfo {
     public static int Quality = 0;
 
     public static float[] TIPI = new float[10];
-    public static int PersonalityDistribution = 1; //0: docile, 1: hostile
+    public static int PersonalityDistribution = 0; //0: docile, 1: hostile
 
 }
 
@@ -43,7 +43,7 @@ public class UserDemographicsGUI : MonoBehaviour {
 
     private void Awake() {
      
-        UserInfo.PersonalityDistribution = 1;
+        UserInfo.PersonalityDistribution = 0;
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;

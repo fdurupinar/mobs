@@ -638,26 +638,28 @@ public class AgentComponent : MonoBehaviour, GeneralStateComponent
 		//Dont't forget to set started waiting to false before state change
 	}
 
-	///Returns true if a fight conditions are met
-	public bool IsGoodToFight(GameObject other, float minDist)
-	{
-		//dist < 3f seklindeydi
-		if (Vector3.Distance(other.transform.position, transform.position) < minDist && CanFight() && other.GetComponent<GeneralStateComponent>().CanFight()){
-			// only fight with real player ?
-			
-		// if (other == null) {
-		//     Debug.LogError("Opponent is null in fight");
-		//     return false;
-		// }
-			if (other.CompareTag("RealPlayer"))
-			{
-				
-				return true;
-			}
 
-			if (other.CompareTag("Player") && (_appraisal.DoesStandardExist(other, AppDef.Disapproving) || _appraisal.DoesStandardExist(other.transform.parent.gameObject, AppDef.Disapproving)))
+	public bool IsGoodToBeAttacked(GameObject other, float minDist) {
+
+		
+		return (Vector3.Distance(other.transform.position, transform.position) < minDist && CanFight() && other.GetComponent<GeneralStateComponent>().CanFight());
+
+	}
+	///Returns true if a fight conditions are met
+	public bool IsGoodToAttack(GameObject other, float minDist) {
+
+		if(IsGoodToBeAttacked(other, minDist)) {
+
+			if(other.CompareTag("RealPlayer") && _appraisal.DoesStandardExist(other, AppDef.Disapproving)) 
+
+				return true;
+			
+
+			else if(other.CompareTag("Player") && (_appraisal.DoesStandardExist(other, AppDef.Disapproving) || _appraisal.DoesStandardExist(other.transform.parent.gameObject, AppDef.Disapproving)))
 				return true;
 		}
+		
+		
 		return false;
 	}
 
